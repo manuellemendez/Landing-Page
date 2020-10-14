@@ -1,0 +1,23 @@
+{
+  "name": "landing-page",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuellemendez/Landing-Page.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manuellemendez/Landing-Page/issues"
+  },
+  "homepage": "https://github.com/manuellemendez/Landing-Page#readme",
+  "dependencies": {
+    "lord-icon-element": "^1.3.0",
+    "lottie-web": "^5.7.3"
+  }
+}

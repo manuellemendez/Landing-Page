@@ -32,3 +32,10 @@ const tl = gsap.tomeline({defaults:{ ease:"power1.out"}});
 
 
 
+// Animation
+
+import { loadAnimation } from 'lottie-web';
+import { defineLordIconElement } from 'lord-icon-element';
+
+// register lottie and define custom element 
+defineLordIconElement(loadAnimation);

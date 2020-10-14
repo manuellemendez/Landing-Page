@@ -64,6 +64,7 @@ li{
 
 .section1{
    font-weight: 400; 
+   transform-style: preserve-3d
     
 }
 @media only screen and (max-width:500px){
@@ -87,11 +88,11 @@ padding: 4rem;
    
 
 }
-
+/* 
 .section2{
- /* display: flex;
-justify-content: space-around;*/
-}
+ display: flex;
+justify-content: space-around;
+}*/
 
 .this-is-me-columns{
     /*display: flex;
@@ -111,7 +112,7 @@ margin-right: 4rem;
     margin-left: 25rem;
     margin-right: 4rem;*/
     color: white;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     
 }
 #resume-button{
@@ -289,13 +290,18 @@ transition: 3s;
     stroke-miterlimit:10;
 }
 
-/*Hover JS Effect*/
-
-#Movement{
-    
-}
+/*SVG Animation*/
 
 
+.bodymovinanim {
+    width: 90%;
+    max-width: 50px;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+
+
+/*    -------------  */   
 .Movement{
     transform-style: preserve-3d;
     transform:translateZ(20px);

@@ -34,8 +34,18 @@ const tl = gsap.tomeline({defaults:{ ease:"power1.out"}});
 
 // Animation
 
-import { loadAnimation } from 'lottie-web';
-import { defineLordIconElement } from 'lord-icon-element';
+//import { loadAnimation } from 'lottie-web';
+//import { defineLordIconElement } from 'lord-icon-element';
 
 // register lottie and define custom element 
-defineLordIconElement(loadAnimation);
+//defineLordIconElement(loadAnimation);
+
+let ScrumAnim = lottie.loadAnimation({
+  container: document.getElementById('anim'), // the dom element that will contain the animation
+  renderer: 'svg',
+  loop: true,
+  autoplay: true,
+  path: '/Animations/1-il-meeting/1-il-meeting/Lottie Files/1-il-meeting-loop.json' // the path to the animation json
+});
+
+ScrumAnim.autoplay()

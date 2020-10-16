@@ -40,12 +40,28 @@ const tl = gsap.tomeline({defaults:{ ease:"power1.out"}});
 // register lottie and define custom element 
 //defineLordIconElement(loadAnimation);
 
-let ScrumAnim = lottie.loadAnimation({
+/* let ScrumAnim = lottie.loadAnimation({
   container: document.getElementById('anim'), // the dom element that will contain the animation
   renderer: 'svg',
   loop: true,
   autoplay: true,
   path: '/Animations/1-il-meeting/1-il-meeting/Lottie Files/1-il-meeting-loop.json' // the path to the animation json
+}); 
+
+ScrumAnim.autoplay()*/
+
+
+
+let ProgramingL=LottieInteractivity.create({
+  mode:"scroll",
+  player:'#Anim',
+  actions: [
+    {
+      visibility: [0,1],
+      type: "seek",
+      frames: [0, 300]
+    }
+  ]  
 });
 
-ScrumAnim.autoplay()
+ProgramingL()

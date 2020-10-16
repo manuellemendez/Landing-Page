@@ -244,6 +244,16 @@ color: white;
  
              
 }
+#FullSL{
+    margin-top: 2rem;
+    padding: 3rem;
+}
+.find-me{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:none ;
+}
 
 /*
 .submit-button{

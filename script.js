@@ -1,5 +1,5 @@
 var i = 0;
-var txt = 'Lorem ipsum dummy text blabla.';
+var txt = "Lorem ipsum dummy text blabla.";
 var speed = 50;
 
 function typeWriter() {
@@ -10,34 +10,41 @@ function typeWriter() {
   }
 }
 
+//Video APP
+document.addEventListener("mouseover", hoverVideo, false);
+var appVideo = document.getElementsByClassName(".appVideo");
+[].forEach.call(vid, function (item) {
+  item.addEventListener("mouseover", hoverVideo, false);
+  item.addEventListener("mouseout", hideVideo, false);
+});
 
-
-
+function hoverVideo(e) {
+  this.play();
+}
+function hideVideo(e) {
+  this.pause();
+}
 
 //Dark Mode
 
-const darkbutton = document.getElementById('dark');
+const darkbutton = document.getElementById("dark");
 const body = document.body;
 // Button Event Handlers
 
 darkbutton.onclick = () => {
-body.classList.add('dark');
+  body.classList.add("dark");
 };
-
-
 
 //Slide Feature
 
-const tl = gsap.tomeline({defaults:{ ease:"power1.out"}});
-
-
+const tl = gsap.tomeline({ defaults: { ease: "power1.out" } });
 
 // Animation
 
 //import { loadAnimation } from 'lottie-web';
 //import { defineLordIconElement } from 'lord-icon-element';
 
-// register lottie and define custom element 
+// register lottie and define custom element
 //defineLordIconElement(loadAnimation);
 
 /* let ScrumAnim = lottie.loadAnimation({
@@ -50,18 +57,16 @@ const tl = gsap.tomeline({defaults:{ ease:"power1.out"}});
 
 ScrumAnim.autoplay()*/
 
-
-
-let ProgramingL=LottieInteractivity.create({
-  mode:"scroll",
-  player:'#Anim',
+let ProgramingL = LottieInteractivity.create({
+  mode: "scroll",
+  player: "#Anim",
   actions: [
     {
-      visibility: [0,1],
+      visibility: [0, 1],
       type: "seek",
-      frames: [0, 300]
-    }
-  ]  
+      frames: [0, 300],
+    },
+  ],
 });
 
-ProgramingL()
+ProgramingL();

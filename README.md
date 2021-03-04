@@ -4,4 +4,4 @@ I have implemented a series of different frameworks and languages, like Html, CS
 
 Thank you for your time.
 
-Manuel
+Manuel.

@@ -1,7 +1,14 @@
-Hello There, Thank you for checking out my website.
+# Manuel Mendez Portfolio
 
-I have implemented a series of different frameworks and languages, like Html, CSS, BOOSTRAP, NPM Packages,JAVASCRIPT.
+A React portfolio and résumé site built with Vite and managed with pnpm.
 
-Thank you for your time.
+## Commands
 
-Manuel.
+```bash
+pnpm install
+pnpm dev
+pnpm build
+pnpm preview
+```
+
+The portfolio is available at `/` and the résumé remains available at `/resume.html`.

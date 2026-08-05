@@ -262,7 +262,7 @@ export default function Portfolio() {
           <div className="hero-glow" aria-hidden="true" ref={heroGlowRef} />
           <div className="hero-grid" ref={liquidContentRef}>
             <div className="hero-copy">
-              <p className="eyebrow reveal">Full-stack web developer · Calgary, Canada</p>
+              <p className="eyebrow reveal">Front-end engineer · Calgary, Canada</p>
               <h1 id="hero-title" className="hero-title reveal">
                 I make complex work
                 <span className="hero-title-accent">feel clear.</span>
@@ -297,8 +297,8 @@ export default function Portfolio() {
 
         <div className="capability-ticker" aria-label="Core strengths">
           <div className="ticker-track">
-            <span>React</span><i>✳</i><span>JavaScript</span><i>✳</i><span>Product thinking</span><i>✳</i><span>Node.js</span><i>✳</i><span>Customer empathy</span><i>✳</i><span>English + Spanish</span><i>✳</i>
-            <span aria-hidden="true">React</span><i aria-hidden="true">✳</i><span aria-hidden="true">JavaScript</span><i aria-hidden="true">✳</i><span aria-hidden="true">Product thinking</span><i aria-hidden="true">✳</i><span aria-hidden="true">Node.js</span><i aria-hidden="true">✳</i><span aria-hidden="true">Customer empathy</span><i aria-hidden="true">✳</i><span aria-hidden="true">English + Spanish</span><i aria-hidden="true">✳</i>
+            <span>React</span><i>✳</i><span>TypeScript</span><i>✳</i><span>UI systems</span><i>✳</i><span>Internationalization</span><i>✳</i><span>Product thinking</span><i>✳</i><span>English + Spanish</span><i>✳</i>
+            <span aria-hidden="true">React</span><i aria-hidden="true">✳</i><span aria-hidden="true">TypeScript</span><i aria-hidden="true">✳</i><span aria-hidden="true">UI systems</span><i aria-hidden="true">✳</i><span aria-hidden="true">Internationalization</span><i aria-hidden="true">✳</i><span aria-hidden="true">Product thinking</span><i aria-hidden="true">✳</i><span aria-hidden="true">English + Spanish</span><i aria-hidden="true">✳</i>
           </div>
         </div>
 
@@ -322,9 +322,9 @@ export default function Portfolio() {
           <div className="experience-content">
             <div className="experience-heading reveal"><p className="eyebrow">A career built around people + systems</p><h2 id="experience-title">From client conversations to production software.</h2></div>
             <div className="timeline">
-              <article className="timeline-item reveal"><div className="timeline-meta"><span>Most recent</span><span>Calgary, AB</span></div><div className="timeline-main"><h3>Web Developer</h3><p className="timeline-company">Vizzn Inc</p><p>Contributed to web software for construction operations—an environment where clear interfaces and dependable workflows have to support work happening in the real world.</p><ul className="tag-list" aria-label="Relevant strengths"><li>Web development</li><li>Product delivery</li><li>Cross-functional work</li></ul></div></article>
+              <article className="timeline-item reveal"><div className="timeline-meta"><span>Most recent</span><span>Calgary, AB</span></div><div className="timeline-main"><h3>Front-end Engineer</h3><p className="timeline-company">Vizzn Inc</p><p>Build and evolve production React and TypeScript interfaces for construction operations, from routing and design-system migrations to fast, localized workflows for equipment, dispatch, reporting, and real-time communication.</p><ul className="tag-list" aria-label="Relevant strengths"><li>React + TypeScript</li><li>shadcn/ui + Ant Design</li><li>i18n + accessible UI</li></ul></div></article>
               <article className="timeline-item reveal"><div className="timeline-meta"><span>Earlier chapter</span><span>Calgary, AB</span></div><div className="timeline-main"><h3>Personal Banking Associate</h3><p className="timeline-company">TD Canada Trust</p><p>Helped clients navigate financial decisions, translated complex information into clear next steps, and built trust in conversations where accuracy mattered.</p><ul className="tag-list" aria-label="Relevant strengths"><li>Client empathy</li><li>Problem solving</li><li>Clear communication</li></ul></div></article>
-              <article className="timeline-item reveal"><div className="timeline-meta"><span>2020—2021</span><span>EvolveU</span></div><div className="timeline-main"><h3>Full-stack development</h3><p className="timeline-company">Immersive program</p><p>Built responsive, project-based applications across the stack, learning through agile collaboration, testing, and frequent delivery.</p><ul className="tag-list" aria-label="Technology foundations"><li>React</li><li>Node + Express</li><li>MongoDB</li></ul></div></article>
+              <article className="timeline-item reveal"><div className="timeline-meta"><span>2020—2021</span><span>EvolveU</span></div><div className="timeline-main"><h3>Full-stack development</h3><p className="timeline-company">Immersive program</p><p>Built responsive, project-based applications across the stack, learning through agile collaboration, testing, and frequent delivery.</p><ul className="tag-list" aria-label="Technology foundations"><li>React</li><li>Node + Express</li><li>API integration</li></ul></div></article>
             </div>
           </div>
         </section>
@@ -345,7 +345,7 @@ export default function Portfolio() {
                 <video className="project-video" src="/Images/Happy Times.mp4" muted loop playsInline preload="metadata" aria-label="Preview of the Happy Times application" />
                 <span className="video-prompt">Hover to preview</span><span className="project-launch" aria-hidden="true">↗</span>
               </a>
-              <div className="project-details"><div className="project-number">02 / Team build</div><h3>Happy Times</h3><p>A location-based full-stack application that helped people find happy-hour options around Calgary, created with a collaborative product team.</p><ul className="project-stack" aria-label="Project technology"><li>React</li><li>Node + Express</li><li>MongoDB</li><li>Maps</li></ul></div>
+              <div className="project-details"><div className="project-number">02 / Team build</div><h3>Happy Times</h3><p>A location-based full-stack application that helped people find happy-hour options around Calgary, created with a collaborative product team.</p><ul className="project-stack" aria-label="Project technology"><li>React</li><li>Node + Express</li><li>Map-based geolocation</li></ul></div>
             </article>
           </div>
           <a className="github-link reveal" href="https://github.com/manuellemendez" target="_blank" rel="noreferrer"><span>More experiments and code on GitHub</span><span aria-hidden="true">View profile ↗</span></a>
@@ -356,9 +356,9 @@ export default function Portfolio() {
           <div className="toolkit-content">
             <h2 id="toolkit-title" className="reveal">Tools change. The way I think travels.</h2>
             <div className="toolkit-grid">
-              <div className="tool-group reveal"><p>Frontend</p><ul><li>JavaScript</li><li>React</li><li>HTML + CSS</li><li>Responsive UI</li></ul></div>
-              <div className="tool-group reveal"><p>Backend</p><ul><li>Node.js</li><li>Express</li><li>MongoDB</li><li>PostgreSQL</li></ul></div>
-              <div className="tool-group reveal"><p>How I work</p><ul><li>Agile delivery</li><li>Git workflows</li><li>Problem framing</li><li>Team communication</li></ul></div>
+              <div className="tool-group reveal"><p>Front-end foundations</p><ul><li>React</li><li>TypeScript</li><li>JavaScript</li><li>HTML + CSS</li></ul></div>
+              <div className="tool-group reveal"><p>UI systems</p><ul><li>shadcn/ui</li><li>Ant Design</li><li>React Router</li><li>Internationalization</li></ul></div>
+              <div className="tool-group reveal"><p>Production delivery</p><ul><li>Server-side search + pagination</li><li>API + third-party integrations</li><li>OpenTelemetry</li><li>Git + GitHub workflows</li></ul></div>
             </div>
           </div>
         </section>
@@ -367,7 +367,7 @@ export default function Portfolio() {
           <div className="contact-orbit" aria-hidden="true"><span>OPEN TO WORK · OPEN TO IDEAS · </span></div>
           <p className="eyebrow reveal">Have a product problem worth solving?</p>
           <h2 id="contact-title" className="reveal">Let’s build what’s next.</h2>
-          <p className="contact-copy reveal">I’m exploring full-stack and front-end opportunities with teams that care about useful products, thoughtful craft, and good collaboration.</p>
+          <p className="contact-copy reveal">I’m exploring front-end opportunities with teams that care about useful products, thoughtful craft, and good collaboration.</p>
           <div className="contact-actions reveal">
             <a className="button button-light" href="mailto:manuellemendez@gmail.com">Start a conversation <span aria-hidden="true">↗</span></a>
             <button className="copy-email" type="button" onClick={copyEmail}><span>{copyLabel}</span></button>

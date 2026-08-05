@@ -14,11 +14,11 @@ export default function Resume() {
 
         <header className="resume-hero">
           <div>
-            <p className="kicker">Full-stack web developer · Calgary, Alberta</p>
+            <p className="kicker">Front-end engineer · Calgary, Alberta</p>
             <h1>Manuel<br />Mendez</h1>
           </div>
           <div className="hero-summary">
-            <p className="role">React · TypeScript · Node.js</p>
+            <p className="role">React · TypeScript · UI systems</p>
             <p>I build production software that makes complex operations easier to understand and use.</p>
             <span className="availability"><i aria-hidden="true" />Open to the right opportunity</span>
           </div>
@@ -28,7 +28,7 @@ export default function Resume() {
           <aside className="resume-sidebar" aria-label="Profile and skills">
             <section className="sidebar-section" aria-labelledby="profile-title">
               <h2 id="profile-title" className="section-title">Profile</h2>
-              <p>Full-stack web developer with 5+ years of experience building and scaling a production React and TypeScript platform for construction operations. I own features end-to-end across architecture, API design, performance, observability, and customer-facing delivery.</p>
+              <p>Front-end engineer with 5+ years of experience building and scaling a production React and TypeScript platform for construction operations. I create clear, resilient user experiences across frontend architecture, design systems, performance, accessibility, and customer-facing delivery.</p>
               <p>I contributed 460+ merged pull requests in a high-velocity product team. Bilingual in English and Spanish.</p>
             </section>
 
@@ -44,8 +44,8 @@ export default function Resume() {
 
             <section className="sidebar-section" aria-labelledby="skills-title">
               <h2 id="skills-title" className="section-title">Technical strengths</h2>
-              <div className="skill-group"><h3>Frontend</h3><p>React, TypeScript, JavaScript, HTML, CSS, shadcn/ui, Ant Design, responsive UI, internationalization</p></div>
-              <div className="skill-group"><h3>Platform</h3><p>API design, server-side search and pagination, OpenTelemetry, signed URLs, third-party integrations, maps, reporting</p></div>
+              <div className="skill-group"><h3>Frontend</h3><p>React, TypeScript, JavaScript, HTML, CSS, React Router, shadcn/ui, Ant Design, responsive UI, internationalization</p></div>
+              <div className="skill-group"><h3>Product platform</h3><p>API integrations, server-side search and pagination, OpenTelemetry, signed URLs, third-party integrations, maps, reporting</p></div>
               <div className="skill-group"><h3>Delivery</h3><p>Architecture migrations, design systems, production debugging, Git and GitHub workflows, agile collaboration</p></div>
             </section>
           </aside>
@@ -55,11 +55,11 @@ export default function Resume() {
               <h2 id="experience-title" className="section-title">Experience</h2>
               <article className="entry">
                 <div className="entry-heading">
-                  <div><h3>Vizzn Inc</h3><p className="entry-role">Software Developer · Permanent full-time</p></div>
+                  <div><h3>Vizzn Inc</h3><p className="entry-role">Front-end Engineer · Permanent full-time</p></div>
                   <div className="entry-meta"><span>Jan 2021 — Aug 2026</span><span>Calgary, Alberta</span></div>
                 </div>
                 <ul className="achievement-list">
-                  <li>Owned production features end-to-end, from architecture and API design through customer-facing fixes, contributing 460+ merged pull requests across the Vizzn construction-operations platform.</li>
+                  <li>Owned production front-end features end-to-end, from architecture and API integration through customer-facing fixes, contributing 460+ merged pull requests across the Vizzn construction-operations platform.</li>
                   <li>Led a major architecture migration by designing a router abstraction layer and moving the application shell away from React Router without disrupting the live product.</li>
                   <li>Built and owned a real-time communications module with rich text, a custom markdown dialect, @mentions, #tags, threads, drafts, mute controls, channel filters, and server-side search.</li>
                   <li>Improved performance across equipment, trailers, jobsites, and the Dispatch Board by replacing heavyweight client-side data fetching with server-side search and pagination.</li>
@@ -83,7 +83,7 @@ export default function Resume() {
               <h2 id="project-title" className="section-title">Selected project</h2>
               <article className="entry project-entry">
                 <div className="entry-heading"><div><h3>Happy Times</h3><p className="entry-role">Full-stack team application</p></div><a className="project-link" href="https://loving-lumiere-9af642.netlify.app/" target="_blank" rel="noreferrer">Visit project ↗</a></div>
-                <p className="entry-description">Location-based discovery application built with React, Node.js, Express, MongoDB, and map-based geolocation.</p>
+                <p className="entry-description">Location-based discovery application built with React, Node.js, Express, and map-based geolocation.</p>
               </article>
             </section>
 

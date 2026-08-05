@@ -1,6 +1,6 @@
 ---
 name: Manuel Mendez Portfolio
-description: A confident minimal portfolio for a product-minded full-stack developer.
+description: A confident minimal portfolio for a product-minded front-end engineer.
 colors:
   ink: "#151412"
   ink-soft: "#1d1b18"

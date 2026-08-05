@@ -6,7 +6,7 @@ brand
 
 ## Users
 
-Hiring managers, recruiters, and technical leads evaluating a full-stack web developer. They arrive with limited time and a crowded inbox; they want to quickly confirm craft, clarity, and real-world delivery. Secondary audience: peers and potential collaborators who may refer or reach out.
+Hiring managers, recruiters, and technical leads evaluating a front-end engineer. They arrive with limited time and a crowded inbox; they want to quickly confirm craft, clarity, and real-world delivery. Secondary audience: peers and potential collaborators who may refer or reach out.
 
 ## Product Purpose
 

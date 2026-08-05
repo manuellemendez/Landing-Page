@@ -1,11 +1,11 @@
 :root {
-  --ink: #171512;
-  --ink-soft: #393530;
-  --paper: #f0ece3;
-  --paper-deep: #e7e0d4;
-  --accent: #b96f49;
-  --muted: #716a62;
-  --line: rgba(23, 21, 18, 0.2);
+  --ink: #151412;
+  --ink-soft: #1d1b18;
+  --paper: #eee9df;
+  --paper-deep: #d4cfc5;
+  --accent: #c9825a;
+  --muted: #999087;
+  --line: rgba(21, 20, 18, 0.2);
   --display: "Manrope", "Helvetica Neue", Arial, sans-serif;
   --mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -24,7 +24,7 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 82% 8%, rgba(185, 111, 73, 0.1), transparent 24rem),
+    radial-gradient(circle at 82% 8%, rgba(201, 130, 90, 0.1), transparent 24rem),
     var(--paper);
   font-family: var(--display);
   text-rendering: optimizeLegibility;
@@ -217,7 +217,7 @@ button {
   height: 0.5rem;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 0 rgba(185, 111, 73, 0.4);
+  box-shadow: 0 0 0 0 rgba(201, 130, 90, 0.5);
   animation: pulse 2.6s infinite;
 }
 
@@ -488,10 +488,10 @@ button {
 
 @keyframes pulse {
   70% {
-    box-shadow: 0 0 0 0.5rem rgba(185, 111, 73, 0);
+    box-shadow: 0 0 0 0.5rem rgba(201, 130, 90, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(185, 111, 73, 0);
+    box-shadow: 0 0 0 0 rgba(201, 130, 90, 0);
   }
 }
 

@@ -44,23 +44,82 @@ if (liquid) {
   window.addEventListener("pagehide", () => liquid.destroy(), { once: true });
 }
 
+const FOCUSABLE_SELECTOR = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "textarea:not([disabled])",
+  "select:not([disabled])",
+  '[tabindex]:not([tabindex="-1"])',
+].join(", ");
+
+let lastFocusedElement = null;
+
+const getFocusableNavItems = () =>
+  nav ? Array.from(nav.querySelectorAll(FOCUSABLE_SELECTOR)) : [];
+
 const closeNavigation = () => {
   if (!navToggle || !nav) return;
 
   navToggle.setAttribute("aria-expanded", "false");
   nav.classList.remove("is-open");
+  nav.removeAttribute("aria-modal");
   document.body.style.overflow = "";
+
+  if (lastFocusedElement && typeof lastFocusedElement.focus === "function") {
+    lastFocusedElement.focus();
+  }
+  lastFocusedElement = null;
+};
+
+const openNavigation = () => {
+  if (!navToggle || !nav) return;
+
+  lastFocusedElement = document.activeElement;
+  navToggle.setAttribute("aria-expanded", "true");
+  nav.classList.add("is-open");
+  nav.setAttribute("aria-modal", "true");
+  document.body.style.overflow = "hidden";
+
+  const focusable = getFocusableNavItems();
+  if (focusable.length > 0) {
+    window.setTimeout(() => focusable[0].focus(), 10);
+  }
 };
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
     const isOpen = navToggle.getAttribute("aria-expanded") === "true";
-    navToggle.setAttribute("aria-expanded", String(!isOpen));
-    nav.classList.toggle("is-open", !isOpen);
-    document.body.style.overflow = isOpen ? "" : "hidden";
+    if (isOpen) closeNavigation();
+    else openNavigation();
   });
 
   navLinks.forEach((link) => link.addEventListener("click", closeNavigation));
+
+  window.addEventListener("keydown", (event) => {
+    if (navToggle.getAttribute("aria-expanded") !== "true") return;
+
+    if (event.key === "Escape") {
+      closeNavigation();
+      return;
+    }
+
+    if (event.key !== "Tab") return;
+
+    const focusable = getFocusableNavItems();
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 760) closeNavigation();

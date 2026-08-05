@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-05T00:00:00Z",
+  "title": "Design System: Manuel Mendez Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(20% 0.012 80)",
+        "tonalRamp": [
+          "oklch(15% 0.010 80)",
+          "oklch(20% 0.012 80)",
+          "oklch(25% 0.014 80)",
+          "oklch(30% 0.016 80)",
+          "oklch(40% 0.018 80)",
+          "oklch(50% 0.020 80)",
+          "oklch(60% 0.022 80)",
+          "oklch(70% 0.024 80)"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Ink Soft",
+        "canonical": "oklch(23% 0.014 80)",
+        "tonalRamp": [
+          "oklch(20% 0.012 80)",
+          "oklch(23% 0.014 80)",
+          "oklch(26% 0.016 80)",
+          "oklch(29% 0.018 80)",
+          "oklch(35% 0.020 80)",
+          "oklch(42% 0.022 80)",
+          "oklch(50% 0.024 80)",
+          "oklch(58% 0.026 80)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(94% 0.018 95)",
+        "tonalRamp": [
+          "oklch(75% 0.020 95)",
+          "oklch(82% 0.020 95)",
+          "oklch(88% 0.019 95)",
+          "oklch(91% 0.019 95)",
+          "oklch(94% 0.018 95)",
+          "oklch(96% 0.016 95)",
+          "oklch(98% 0.014 95)",
+          "oklch(99% 0.010 95)"
+        ]
+      },
+      "paper-deep": {
+        "role": "neutral",
+        "displayName": "Paper Deep",
+        "canonical": "oklch(82% 0.020 95)",
+        "tonalRamp": [
+          "oklch(60% 0.022 95)",
+          "oklch(68% 0.022 95)",
+          "oklch(75% 0.021 95)",
+          "oklch(79% 0.020 95)",
+          "oklch(82% 0.020 95)",
+          "oklch(86% 0.019 95)",
+          "oklch(90% 0.018 95)",
+          "oklch(94% 0.017 95)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Warm Sandstone",
+        "canonical": "oklch(63% 0.14 55)",
+        "tonalRamp": [
+          "oklch(25% 0.06 55)",
+          "oklch(35% 0.09 55)",
+          "oklch(45% 0.12 55)",
+          "oklch(55% 0.13 55)",
+          "oklch(63% 0.14 55)",
+          "oklch(70% 0.15 55)",
+          "oklch(78% 0.14 55)",
+          "oklch(88% 0.10 55)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted",
+        "canonical": "oklch(64% 0.030 85)",
+        "tonalRamp": [
+          "oklch(45% 0.028 85)",
+          "oklch(52% 0.029 85)",
+          "oklch(58% 0.030 85)",
+          "oklch(64% 0.030 85)",
+          "oklch(70% 0.029 85)",
+          "oklch(76% 0.028 85)",
+          "oklch(82% 0.026 85)",
+          "oklch(90% 0.020 85)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "oklch(24% 0.030 80)",
+        "tonalRamp": [
+          "oklch(18% 0.022 80)",
+          "oklch(21% 0.026 80)",
+          "oklch(24% 0.030 80)",
+          "oklch(27% 0.034 80)",
+          "oklch(32% 0.038 80)",
+          "oklch(38% 0.040 80)",
+          "oklch(45% 0.040 80)",
+          "oklch(52% 0.038 80)"
+        ]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Surface Raised",
+        "canonical": "oklch(22% 0.028 80)",
+        "tonalRamp": [
+          "oklch(16% 0.020 80)",
+          "oklch(19% 0.024 80)",
+          "oklch(22% 0.028 80)",
+          "oklch(25% 0.032 80)",
+          "oklch(30% 0.036 80)",
+          "oklch(36% 0.038 80)",
+          "oklch(42% 0.038 80)",
+          "oklch(50% 0.036 80)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero headline only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section statements and major headings."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Timeline roles, project titles, and mid-level headings."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs and readable text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Section indices, metadata, tags, navigation, and buttons."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-float",
+        "value": "0 1.5rem 5rem rgba(21, 20, 18, 0.25)",
+        "purpose": "Used on the floating availability card only."
+      },
+      {
+        "name": "header-glass",
+        "value": "none",
+        "purpose": "Header uses backdrop-filter blur, not shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default ease-out-quart for transitions, hovers, and reveals."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity 750ms cubic-bezier(0.22, 1, 0.36, 1), transform 750ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Scroll-driven reveal animations."
+      },
+      {
+        "name": "hover-lift",
+        "value": "transform 220ms cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Button and link hover lifts."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "1050px"
+      },
+      {
+        "name": "mobile",
+        "value": "760px"
+      },
+      {
+        "name": "small",
+        "value": "460px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Main call-to-action on dark surfaces.",
+      "html": "<button class=\"ds-btn-primary\">See selected work ↓</button>",
+      "css": ".ds-btn-primary { display: inline-flex; min-height: 3.4rem; align-items: center; justify-content: center; gap: 2.5rem; padding: 0.9rem 1.15rem; border: 1px solid transparent; color: #151412; background: #c9825a; font-family: 'DM Mono', monospace; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), color 220ms ease, background 220ms ease, border-color 220ms ease; } .ds-btn-primary:hover { transform: translateY(-3px); border-color: #c9825a; color: #c9825a; background: transparent; } .ds-btn-primary:active { transform: translateY(0) scale(0.985); } .ds-btn-primary:focus-visible { outline: 2px solid #c9825a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Light Button",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "Primary action on the light/accent contact section.",
+      "html": "<button class=\"ds-btn-light\">Start a conversation ↗</button>",
+      "css": ".ds-btn-light { display: inline-flex; min-height: 3.4rem; align-items: center; justify-content: center; gap: 2.5rem; padding: 0.9rem 1.15rem; border: 1px solid #151412; color: #eee9df; background: #151412; font-family: 'DM Mono', monospace; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.06em; cursor: pointer; transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1), color 220ms ease, background 220ms ease; } .ds-btn-light:hover { transform: translateY(-3px); color: #151412; background: transparent; } .ds-btn-light:active { transform: translateY(0) scale(0.985); } .ds-btn-light:focus-visible { outline: 2px solid #151412; outline-offset: 4px; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Desktop navigation link with underline reveal on hover.",
+      "html": "<a href=\"#work\" class=\"ds-nav-link\">Work</a>",
+      "css": ".ds-nav-link { position: relative; padding: 0.6rem 0; color: #d4cfc5; font-family: 'DM Mono', monospace; font-size: 0.74rem; text-decoration: none; transition: color 180ms ease; } .ds-nav-link::after { position: absolute; right: 0; bottom: 0.35rem; left: 0; height: 1px; content: ''; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 240ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-nav-link:hover { color: #c9825a; } .ds-nav-link:hover::after { transform: scaleX(1); transform-origin: left; } .ds-nav-link:focus-visible { outline: 2px solid #c9825a; outline-offset: 4px; }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Technology or skill tag used on projects and experience items.",
+      "html": "<span class=\"ds-chip\">React</span>",
+      "css": ".ds-chip { display: inline-block; padding: 0.5rem 0.7rem; border: 1px solid rgba(238, 233, 223, 0.16); color: #999087; font-family: 'DM Mono', monospace; font-size: 0.61rem; text-transform: uppercase; letter-spacing: 0.07em; }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Featured work block with media, launch badge, and details.",
+      "html": "<article class=\"ds-project\"><a href=\"#\" class=\"ds-project-media\"><img src=\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\" alt=\"Project preview\" class=\"ds-project-img\"/><span class=\"ds-project-launch\" aria-hidden=\"true\">↗</span></a><div class=\"ds-project-details\"><div class=\"ds-project-number\">01 / Live website</div><h3>Project Name</h3><p>Short description of the project.</p></div></article>",
+      "css": ".ds-project { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 0.7fr); align-items: start; gap: clamp(2rem, 5vw, 5rem); } .ds-project-media { position: relative; display: block; aspect-ratio: 1.65; overflow: hidden; background: #25211d; } .ds-project-media::after { position: absolute; inset: 0; border: 1px solid rgba(238, 233, 223, 0.22); content: ''; pointer-events: none; } .ds-project-img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.7) contrast(1.02); transition: transform 750ms cubic-bezier(0.22, 1, 0.36, 1), filter 450ms ease; } .ds-project-media:hover .ds-project-img { filter: saturate(1) contrast(1.02); transform: scale(1.04); } .ds-project-launch { position: absolute; z-index: 3; top: 1rem; right: 1rem; display: grid; width: 3.1rem; aspect-ratio: 1; place-items: center; color: #151412; background: #c9825a; font-size: 1.15rem; transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1); } .ds-project-media:hover .ds-project-launch { transform: rotate(45deg); } .ds-project-number { margin-bottom: 1.4rem; color: #c9825a; font-family: 'DM Mono', monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; } .ds-project-details h3 { margin: 0 0 1.3rem; font-size: clamp(2rem, 3.5vw, 3.9rem); line-height: 1; letter-spacing: -0.055em; color: #eee9df; font-family: 'Manrope', sans-serif; } .ds-project-details p { max-width: 50ch; margin: 0; color: #d4cfc5; line-height: 1.75; font-family: 'Manrope', sans-serif; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Craftsman's Bench",
+    "overview": "This portfolio reads like a clean workshop bench: every element has a reason to be there, and the warm accent is the tool that gets picked up most. The design rejects decoration without function. It is dark, grounded, and precise—built for hiring managers who scan fast and want to see real craft without theatrical flair.",
+    "keyCharacteristics": [
+      "Dark-first, warm-on-dark backgrounds with a single warm sandstone accent.",
+      "Angular, not rounded. Sharp clip-paths and 0px radii throughout.",
+      "Monospace labels, sans-serif everything else.",
+      "Section numbers as vertical wayfinding on desktop.",
+      "Restrained motion with full reduced-motion support."
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Warm sandstone is the only saturated color. Use it for the primary action, the current location, and one deliberate emphasis per section.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Pure Black Rule",
+        "body": "Backgrounds are tinted warm (#151412, not #000). Text is tinted cream (#eee9df, not #fff).",
+        "section": "colors"
+      },
+      {
+        "name": "The Big Type, Small Type Rule",
+        "body": "Hierarchy is built on scale contrast and weight, not on many intermediate sizes. Use display/headline/title/body/label only.",
+        "section": "typography"
+      },
+      {
+        "name": "The Caps Are Labels Rule",
+        "body": "Uppercase + wide tracking is reserved for metadata, navigation, and tags. Never uppercase body text.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces sit flat. Use tonal contrast or a thin line to separate them, not drop shadows.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Glass Is Rare Rule",
+        "body": "Backdrop blur appears only when an element must float above content that still needs to be partially visible. Otherwise use solid ink-soft.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep the warm sandstone accent rare and intentional.",
+      "Do use Manrope for everything except metadata, which uses DM Mono.",
+      "Do maintain sharp corners on every component; radii are 0.",
+      "Do cap body paragraphs at ~65ch.",
+      "Do respect prefers-reduced-motion.",
+      "Do use subtle warm tints on neutrals instead of pure black or white."
+    ],
+    "donts": [
+      "Don't use gradient text or gradient buttons.",
+      "Don't use side-stripe borders as accents on cards, lists, or callouts.",
+      "Don't use generic SaaS/template portfolio clichés.",
+      "Don't use cold corporate palette: navy + white, stock visuals, impersonal language.",
+      "Don't introduce a second saturated accent color.",
+      "Don't round corners or add soft shadows to every surface.",
+      "Don't use em dashes in copy."
+    ]
+  }
+}

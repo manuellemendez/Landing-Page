@@ -1,11 +1,11 @@
 :root {
-  --ink: #151412;
-  --ink-soft: #1d1b18;
-  --paper: #eee9df;
-  --paper-deep: #d4cfc5;
-  --accent: #c9825a;
-  --muted: #999087;
-  --line: rgba(21, 20, 18, 0.2);
+  --ink: oklch(0.16 0.025 205);
+  --ink-soft: oklch(0.195 0.027 205);
+  --paper: oklch(0.93 0.018 195);
+  --paper-deep: oklch(0.84 0.026 195);
+  --accent: oklch(0.7 0.115 190);
+  --muted: oklch(0.64 0.035 200);
+  --line: oklch(0.16 0.025 205 / 0.2);
   --display: "Manrope", "Helvetica Neue", Arial, sans-serif;
   --mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -24,7 +24,7 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 82% 8%, rgba(201, 130, 90, 0.1), transparent 24rem),
+    radial-gradient(circle at 82% 8%, oklch(0.7 0.115 190 / 0.1), transparent 24rem),
     var(--paper);
   font-family: var(--display);
   text-rendering: optimizeLegibility;
@@ -217,7 +217,7 @@ button {
   height: 0.5rem;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 0 rgba(201, 130, 90, 0.5);
+  box-shadow: 0 0 0 0 oklch(0.7 0.115 190 / 0.5);
   animation: pulse 2.6s infinite;
 }
 
@@ -488,10 +488,10 @@ button {
 
 @keyframes pulse {
   70% {
-    box-shadow: 0 0 0 0.5rem rgba(201, 130, 90, 0);
+    box-shadow: 0 0 0 0.5rem oklch(0.7 0.115 190 / 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(201, 130, 90, 0);
+    box-shadow: 0 0 0 0 oklch(0.7 0.115 190 / 0);
   }
 }
 

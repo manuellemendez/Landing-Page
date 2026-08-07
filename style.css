@@ -1,37 +1,41 @@
 :root {
-  --ink: #151412;
-  --ink-soft: #1d1b18;
-  --ink-08: rgba(21, 20, 18, 0.08);
-  --ink-16: rgba(21, 20, 18, 0.16);
-  --ink-18: rgba(21, 20, 18, 0.18);
-  --ink-20: rgba(21, 20, 18, 0.2);
-  --ink-28: rgba(21, 20, 18, 0.28);
-  --ink-38: rgba(21, 20, 18, 0.38);
-  --ink-82: rgba(21, 20, 18, 0.82);
-  --ink-84: rgba(21, 20, 18, 0.84);
-  --ink-65: rgba(21, 20, 18, 0.65);
-  --ink-90: rgba(21, 20, 18, 0.9);
-  --paper: #eee9df;
-  --paper-deep: #d4cfc5;
-  --paper-16: rgba(238, 233, 223, 0.16);
-  --paper-22: rgba(238, 233, 223, 0.22);
-  --paper-34: rgba(238, 233, 223, 0.34);
-  --accent: #c9825a;
-  --accent-08: rgba(201, 130, 90, 0.08);
-  --accent-10: rgba(201, 130, 90, 0.1);
-  --accent-34: rgba(201, 130, 90, 0.34);
-  --accent-46: rgba(201, 130, 90, 0.46);
-  --accent-50: rgba(201, 130, 90, 0.5);
-  --muted: #999087;
-  --surface: #28231f;
-  --surface-raised: #25211d;
-  --shadow-soft: 0 1.5rem 5rem rgba(21, 20, 18, 0.25);
+  --ink: oklch(0.16 0.025 205);
+  --ink-soft: oklch(0.195 0.027 205);
+  --ink-08: oklch(0.16 0.025 205 / 0.08);
+  --ink-16: oklch(0.16 0.025 205 / 0.16);
+  --ink-18: oklch(0.16 0.025 205 / 0.18);
+  --ink-20: oklch(0.16 0.025 205 / 0.2);
+  --ink-28: oklch(0.16 0.025 205 / 0.28);
+  --ink-38: oklch(0.16 0.025 205 / 0.38);
+  --ink-82: oklch(0.16 0.025 205 / 0.82);
+  --ink-84: oklch(0.16 0.025 205 / 0.84);
+  --ink-65: oklch(0.16 0.025 205 / 0.65);
+  --ink-90: oklch(0.16 0.025 205 / 0.9);
+  --paper: oklch(0.93 0.018 195);
+  --paper-deep: oklch(0.84 0.026 195);
+  --paper-16: oklch(0.93 0.018 195 / 0.16);
+  --paper-22: oklch(0.93 0.018 195 / 0.22);
+  --paper-34: oklch(0.93 0.018 195 / 0.34);
+  --accent: oklch(0.7 0.115 190);
+  --accent-08: oklch(0.7 0.115 190 / 0.08);
+  --accent-10: oklch(0.7 0.115 190 / 0.1);
+  --accent-34: oklch(0.7 0.115 190 / 0.34);
+  --accent-46: oklch(0.7 0.115 190 / 0.46);
+  --accent-50: oklch(0.7 0.115 190 / 0.5);
+  --signal: oklch(0.84 0.1 150);
+  --signal-34: oklch(0.84 0.1 150 / 0.34);
+  --muted: oklch(0.64 0.035 200);
+  --surface: oklch(0.225 0.032 205);
+  --surface-raised: oklch(0.205 0.03 205);
+  --shadow-soft: 0 1.5rem 5rem oklch(0.1 0.025 205 / 0.34);
   --line-dark: var(--paper-16);
   --line-light: var(--ink-18);
   --display: "Manrope", "Helvetica Neue", Arial, sans-serif;
   --mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
   --container: min(92vw, 1440px);
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease: var(--ease-out);
 }
 
 * {
@@ -92,6 +96,44 @@ video {
   max-width: 100%;
 }
 
+.particle-scroll {
+  position: relative;
+  isolation: isolate;
+}
+
+.particle-scroll-content {
+  --particle-line: 68vh;
+  --particle-band: 420px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 max(0px, calc(var(--particle-line) - var(--particle-band) * 0.5)),
+    rgba(0, 0, 0, 0.72) var(--particle-line),
+    transparent calc(var(--particle-line) + var(--particle-band) * 0.5)
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    #000 0,
+    #000 max(0px, calc(var(--particle-line) - var(--particle-band) * 0.5)),
+    rgba(0, 0, 0, 0.72) var(--particle-line),
+    transparent calc(var(--particle-line) + var(--particle-band) * 0.5)
+  );
+}
+
+.particle-scroll-content.particle-scroll-reduced {
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+.particle-scroll-canvas {
+  position: fixed;
+  z-index: 18;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
 .skip-link {
   position: fixed;
   z-index: 100;
@@ -126,14 +168,12 @@ video {
   padding: 0 4vw;
   border-bottom: 1px solid transparent;
   transition:
-    min-height 260ms var(--ease),
-    background-color 260ms ease,
-    border-color 260ms ease,
-    backdrop-filter 260ms ease;
+    background-color 180ms ease,
+    border-color 180ms ease,
+    backdrop-filter 180ms ease;
 }
 
 .site-header.is-scrolled {
-  min-height: 4.6rem;
   border-color: var(--line-dark);
   background: var(--ink-84);
   backdrop-filter: blur(16px);
@@ -177,7 +217,7 @@ video {
   position: relative;
   padding: 0.6rem 0;
   color: var(--paper-deep);
-  transition: color 180ms ease;
+  transition: color 140ms ease;
 }
 
 .site-nav a::after {
@@ -193,15 +233,6 @@ video {
   transition: transform 240ms var(--ease);
 }
 
-.site-nav a:hover {
-  color: var(--accent);
-}
-
-.site-nav a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
 .site-nav .nav-cta {
   margin-left: 0.5rem;
   padding: 0.8rem 1rem;
@@ -209,25 +240,18 @@ video {
   color: var(--ink);
   background: var(--accent);
   transition:
-    transform 220ms var(--ease),
-    color 220ms ease,
-    background 220ms ease,
-    border-color 220ms ease;
+    transform 150ms var(--ease-out),
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
 }
 
 .site-nav .nav-cta::after {
   display: none;
 }
 
-.site-nav .nav-cta:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: transparent;
-  transform: translateY(-2px);
-}
-
 .site-nav .nav-cta:active {
-  transform: translateY(0) scale(0.985);
+  transform: scale(0.97);
 }
 
 .nav-toggle {
@@ -321,16 +345,17 @@ video {
 
 .hero-glow {
   position: absolute;
-  top: var(--glow-y, 25%);
-  left: var(--glow-x, 72%);
+  top: 0;
+  left: 0;
   width: 28rem;
   aspect-ratio: 1;
   border-radius: 50%;
   pointer-events: none;
   background: var(--accent-10);
   filter: blur(90px);
-  transform: translate(-50%, -50%);
-  transition: top 500ms var(--ease), left 500ms var(--ease);
+  transform: translate3d(calc(72vw - 50%), calc(25vh - 50%), 0);
+  transition: transform 420ms var(--ease-out);
+  will-change: transform;
 }
 
 .hero-grid {
@@ -361,7 +386,7 @@ video {
 .hero-title-accent {
   display: block;
   color: var(--accent);
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .hero-intro {
@@ -399,29 +424,19 @@ video {
   text-transform: uppercase;
   letter-spacing: 0.06em;
   transition:
-    transform 220ms var(--ease),
-    color 220ms ease,
-    background 220ms ease,
-    border-color 220ms ease;
-}
-
-.button:hover {
-  transform: translateY(-3px);
+    transform 150ms var(--ease-out),
+    color 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease;
 }
 
 .button:active {
-  transform: translateY(0) scale(0.985);
+  transform: scale(0.97);
 }
 
 .button-primary {
   color: var(--ink);
   background: var(--accent);
-}
-
-.button-primary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: transparent;
 }
 
 .text-link {
@@ -441,12 +456,8 @@ video {
   height: 1px;
   content: "";
   background: var(--paper);
-  transition: transform 220ms var(--ease);
+  transition: transform 180ms var(--ease-out);
   transform-origin: left;
-}
-
-.text-link:hover::after {
-  transform: scaleX(0.25);
 }
 
 .hero-portrait-wrap {
@@ -479,41 +490,7 @@ video {
   object-position: 50% 24%;
   filter: grayscale(1) contrast(1.08) brightness(0.84);
   transform: scale(1.015);
-  transition: filter 450ms ease, transform 700ms var(--ease);
-}
-
-.hero-portrait-wrap:hover .hero-portrait {
-  filter: grayscale(0.25) contrast(1.04) brightness(0.92);
-  transform: scale(1.045);
-}
-
-.portrait-scanline {
-  position: absolute;
-  inset: -20% 0 auto;
-  height: 20%;
-  background: linear-gradient(to bottom, transparent, var(--accent-10), transparent);
-  animation: scan 7s linear infinite;
-}
-
-.portrait-note {
-  position: absolute;
-  z-index: 2;
-  margin: 0;
-  color: var(--muted);
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.portrait-note-top {
-  top: -1.8rem;
-  right: 0;
-}
-
-.portrait-note-bottom {
-  right: 0;
-  bottom: -1.6rem;
+  transition: filter 240ms ease, transform 420ms var(--ease-out);
 }
 
 .availability-card {
@@ -540,9 +517,8 @@ video {
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 0 var(--accent-50);
-  animation: pulse 2.5s infinite;
+  background: var(--signal);
+  box-shadow: 0 0 0 0.28rem var(--signal-34);
 }
 
 .hero-index {
@@ -565,33 +541,6 @@ video {
 .hero-index-line {
   height: 1px;
   background: var(--line-dark);
-}
-
-.capability-ticker {
-  width: 100%;
-  padding: 1rem 0;
-  overflow: hidden;
-  border-top: 1px solid var(--line-dark);
-  border-bottom: 1px solid var(--line-dark);
-  color: var(--ink);
-  background: var(--accent);
-}
-
-.ticker-track {
-  display: flex;
-  width: max-content;
-  align-items: center;
-  gap: 1.65rem;
-  white-space: nowrap;
-  animation: marquee 27s linear infinite;
-  font-size: clamp(1rem, 1.7vw, 1.4rem);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.ticker-track i {
-  font-style: normal;
-  font-size: 0.75em;
 }
 
 .about {
@@ -769,13 +718,20 @@ video {
 
 .tag-list li,
 .project-stack li {
-  padding: 0.5rem 0.7rem;
-  border: 1px solid var(--line-dark);
+  padding: 0;
+  border: 0;
   color: var(--muted);
   font-family: var(--mono);
   font-size: 0.61rem;
   text-transform: uppercase;
   letter-spacing: 0.07em;
+}
+
+.tag-list li:not(:last-child)::after,
+.project-stack li:not(:last-child)::after {
+  margin-left: 0.5rem;
+  color: var(--accent);
+  content: "/";
 }
 
 .work {
@@ -860,13 +816,7 @@ video {
   height: 100%;
   object-fit: cover;
   filter: saturate(0.7) contrast(1.02);
-  transition: transform 750ms var(--ease), filter 450ms ease;
-}
-
-.project-media:hover img,
-.project-media:hover .project-video {
-  filter: saturate(1) contrast(1.02);
-  transform: scale(1.04);
+  transition: transform 420ms var(--ease-out), filter 220ms ease;
 }
 
 .project-launch {
@@ -874,18 +824,17 @@ video {
   z-index: 3;
   top: 1rem;
   right: 1rem;
-  display: grid;
-  width: 3.1rem;
-  aspect-ratio: 1;
-  place-items: center;
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  padding: 0.7rem 0.8rem;
   color: var(--ink);
   background: var(--accent);
-  font-size: 1.15rem;
-  transition: transform 300ms var(--ease);
-}
-
-.project-media:hover .project-launch {
-  transform: rotate(45deg);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: transform 160ms var(--ease-out);
 }
 
 .project-media-code {
@@ -900,11 +849,7 @@ video {
   font-size: clamp(1.6rem, 4vw, 2.6rem);
   letter-spacing: -0.02em;
   text-transform: uppercase;
-  transition: color 450ms ease;
-}
-
-.project-media-code:hover .project-media-mark {
-  color: var(--paper-16);
+  transition: color 180ms ease;
 }
 
 .project-tech-reveal {
@@ -921,11 +866,10 @@ video {
   backdrop-filter: blur(10px);
   opacity: 0;
   transform: translateY(0.6rem);
-  transition: opacity 350ms var(--ease), transform 350ms var(--ease);
+  transition: opacity 180ms ease, transform 200ms var(--ease-out);
   pointer-events: none;
 }
 
-.project-media:hover .project-tech-reveal,
 .project-media:focus-visible .project-tech-reveal {
   opacity: 1;
   transform: translateY(0);
@@ -997,18 +941,11 @@ video {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  transition: color 200ms ease, padding 250ms var(--ease), transform 220ms var(--ease);
-}
-
-.github-link:hover {
-  padding-right: 0.75rem;
-  padding-left: 0.75rem;
-  color: var(--accent);
-  transform: translateX(0.25rem);
+  transition: color 160ms ease, transform 160ms var(--ease-out);
 }
 
 .github-link:active {
-  transform: translateX(0);
+  transform: scale(0.985);
 }
 
 .toolkit {
@@ -1084,11 +1021,11 @@ video {
 .contact h2 {
   position: relative;
   z-index: 2;
-  max-width: 9ch;
+  max-width: 11ch;
   margin: 1.25rem 0 2rem;
-  font-size: clamp(4.5rem, 11vw, 13rem);
-  line-height: 0.82;
-  letter-spacing: -0.085em;
+  font-size: clamp(4rem, 9vw, 10rem);
+  line-height: 0.88;
+  letter-spacing: -0.075em;
   text-wrap: balance;
 }
 
@@ -1116,11 +1053,6 @@ video {
   background: var(--ink);
 }
 
-.button-light:hover {
-  color: var(--ink);
-  background: transparent;
-}
-
 .copy-email {
   min-height: 3.4rem;
   padding: 0.9rem 1.15rem;
@@ -1132,59 +1064,16 @@ video {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  transition: background 200ms ease, transform 200ms var(--ease);
-}
-
-.copy-email:hover {
-  background: var(--ink-08);
-  transform: translateY(-2px);
+  transition: background 160ms ease, transform 150ms var(--ease-out);
 }
 
 .copy-email:active {
-  transform: translateY(0) scale(0.985);
+  transform: scale(0.97);
 }
 
 .copy-email:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 4px;
-}
-
-.contact-orbit {
-  position: absolute;
-  top: 15%;
-  right: -4vw;
-  display: grid;
-  width: clamp(11rem, 18vw, 19rem);
-  aspect-ratio: 1;
-  place-items: center;
-  border: 1px solid var(--ink-28);
-  border-radius: 50%;
-  animation: orbit 18s linear infinite;
-}
-
-.contact-orbit::before,
-.contact-orbit::after {
-  position: absolute;
-  content: "";
-  border: 1px solid var(--ink-20);
-  border-radius: 50%;
-}
-
-.contact-orbit::before {
-  inset: 17%;
-}
-
-.contact-orbit::after {
-  inset: 34%;
-  background: var(--ink);
-}
-
-.contact-orbit span {
-  position: absolute;
-  top: 0.4rem;
-  font-family: var(--mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.13em;
 }
 
 .site-footer {
@@ -1212,56 +1101,21 @@ video {
   transition: color 180ms ease;
 }
 
-.footer-links a:hover {
-  color: var(--accent);
-}
-
 .footer-links a:active {
   color: var(--paper);
 }
 
 .reveal {
   opacity: 0;
-  transform: translateY(2rem);
+  transform: translateY(0.75rem);
   transition:
-    opacity 750ms var(--ease),
-    transform 750ms var(--ease);
+    opacity 480ms ease,
+    transform 520ms var(--ease-out);
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 var(--accent-46);
-  }
-  70%,
-  100% {
-    box-shadow: 0 0 0 0.65rem rgba(201, 130, 90, 0);
-  }
-}
-
-@keyframes scan {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(700%);
-  }
-}
-
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes orbit {
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 @media (max-width: 1050px) {
@@ -1307,6 +1161,81 @@ video {
 
   .project-secondary .project-details {
     order: 1;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-nav a:hover {
+    color: var(--accent);
+  }
+
+  .site-nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .site-nav .nav-cta:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: transparent;
+    transform: translateY(-2px);
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-primary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: transparent;
+  }
+
+  .button-light:hover {
+    color: var(--ink);
+    background: transparent;
+  }
+
+  .text-link:hover::after {
+    transform: scaleX(0.25);
+  }
+
+  .hero-portrait-wrap:hover .hero-portrait {
+    filter: grayscale(0.25) contrast(1.04) brightness(0.92);
+    transform: scale(1.035);
+  }
+
+  .project-media:hover img,
+  .project-media:hover .project-video {
+    filter: saturate(1) contrast(1.02);
+    transform: scale(1.025);
+  }
+
+  .project-media:hover .project-launch {
+    transform: translate(-0.15rem, 0.15rem);
+  }
+
+  .project-media-code:hover .project-media-mark {
+    color: var(--paper-16);
+  }
+
+  .project-media:hover .project-tech-reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .github-link:hover {
+    color: var(--accent);
+    transform: translateX(0.25rem);
+  }
+
+  .copy-email:hover {
+    background: var(--ink-08);
+    transform: translateY(-2px);
+  }
+
+  .footer-links a:hover {
+    color: var(--accent);
   }
 }
 
@@ -1544,13 +1473,6 @@ video {
     font-size: clamp(4.5rem, 18vw, 8rem);
   }
 
-  .contact-orbit {
-    top: auto;
-    right: -5rem;
-    bottom: 3rem;
-    opacity: 0.45;
-  }
-
   .site-footer {
     min-height: 10rem;
     align-items: flex-start;
@@ -1611,15 +1533,18 @@ video {
   *,
   *::before,
   *::after {
+    animation: none !important;
     scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
   }
 
   .reveal {
-    opacity: 1;
+    opacity: 0;
     transform: none;
+    transition: opacity 180ms ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
   }
 
   .liquid-output {

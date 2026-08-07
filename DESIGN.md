@@ -2,14 +2,15 @@
 name: Manuel Mendez Portfolio
 description: A confident minimal portfolio for a product-minded front-end engineer.
 colors:
-  ink: "#151412"
-  ink-soft: "#1d1b18"
-  paper: "#eee9df"
-  paper-deep: "#d4cfc5"
-  accent: "#c9825a"
-  muted: "#999087"
-  line-dark: "rgba(238, 233, 223, 0.16)"
-  line-light: "rgba(21, 20, 18, 0.18)"
+  ink: "oklch(0.16 0.025 205)"
+  ink-soft: "oklch(0.195 0.027 205)"
+  paper: "oklch(0.93 0.018 195)"
+  paper-deep: "oklch(0.84 0.026 195)"
+  accent: "oklch(0.7 0.115 190)"
+  signal: "oklch(0.84 0.1 150)"
+  muted: "oklch(0.64 0.035 200)"
+  line-dark: "oklch(0.93 0.018 195 / 0.16)"
+  line-light: "oklch(0.16 0.025 205 / 0.18)"
 typography:
   display:
     fontFamily: '"Manrope", "Helvetica Neue", Arial, sans-serif'
@@ -86,39 +87,40 @@ components:
 
 **Creative North Star: "The Craftsman's Bench"**
 
-This portfolio reads like a clean workshop bench: every element has a reason to be there, and the warm accent is the tool that gets picked up most. The design rejects decoration without function. It is dark, grounded, and precise—built for hiring managers who scan fast and want to see real craft without theatrical flair.
+This portfolio reads like weathered copper architecture after rain: dark mineral surfaces, a controlled verdigris patina, and pale metal catching the light. Every element has a reason to be there. It is grounded and exact, built for hiring managers who want evidence of real craft without theatrical flair.
 
-The system is deliberately restrained. Typography does the hierarchy work. Color stays muted until the warm sandstone accent marks what matters: the CTA, the active state, the section index, the portrait edge. Motion is minimal and stateful—subtle reveals on scroll, a hover lift on buttons, a video preview on project cards—never an entrance parade.
+The system uses a focused full palette. Typography does most of the hierarchy work. Verdigris marks identity and action; pale patina is reserved for live status. Motion is minimal and stateful: subtle reveals on scroll, a hover lift on buttons, and a video preview on project cards.
 
 **Key characteristics:**
-- **Dark-first, warm-on-dark.** Ink backgrounds (#151412) with paper text (#eee9df) and a single warm sandstone accent (#c9825a).
-- **Angular, not rounded.** Sharp clip-paths and 0px radii throughout. The only organic shapes are the contact orbit and the fluid sim background.
+- **Mineral-black and pearl.** Blue-green ink grounds the page, mineral pearl carries text, verdigris drives identity, and pale patina signals availability.
+- **Angular, not rounded.** Sharp clip-paths and 0px radii throughout. The fluid hero background is the one deliberately organic element.
 - **Monospace labels, sans-serif everything else.** DM Mono handles metadata and small labels; Manrope carries headlines and body.
 - **Section numbers as wayfinding.** 01–04 labels run vertically on desktop, anchoring the scroll rhythm.
 - **Restrained motion.** Reveal-on-scroll for content, hover micro-interactions for interactive elements, full reduced-motion support.
 
 ## 2. Colors
 
-The palette is built on warm neutrals and a single accent that behaves like a reading light against a dark wall.
+The palette borrows from oxidized copper rather than generic digital color: blue-green black, mineral pearl, controlled verdigris, and one tightly scoped pale-patina signal.
 
 ### Primary
-- **Warm Sandstone** (#c9825a): The single accent. Used for primary buttons, active nav states, section numbers, project launch badges, timeline company names, and the contact section background.
+- **Verdigris** (`oklch(0.7 0.115 190)`): The identity color. Used for primary buttons, active navigation, section numbers, project actions, company names, and the contact surface.
+- **Pale Patina** (`oklch(0.84 0.1 150)`): A semantic signal used only for live availability.
 
 ### Neutral
-- **Ink** (#151412): Primary background. Almost black with subtle warm tint.
+- **Ink** (`oklch(0.16 0.025 205)`): Primary background, nearly black with a blue-green mineral undertone.
 - **Ink Soft** (#1d1b18): Scrolled header background.
-- **Surface** (#28231f): Portrait frame and media backplates. Slightly lighter than ink-soft for subtle depth.
-- **Surface Raised** (#25211d): Project media backplates and other raised dark surfaces.
-- **Paper** (#eee9df): Primary text and borders on dark surfaces.
-- **Paper Deep** (#d4cfc5): Secondary text, nav links at rest.
-- **Muted** (#999087): Tertiary metadata, captions, subtle separators.
+- **Surface** (`oklch(0.225 0.032 205)`): Portrait frame and media backplates, slightly lighter than ink-soft.
+- **Surface Raised** (`oklch(0.205 0.03 205)`): Project media backplates and other raised dark surfaces.
+- **Paper** (`oklch(0.93 0.018 195)`): Mineral pearl for primary text and borders.
+- **Paper Deep** (`oklch(0.84 0.026 195)`): Secondary text and navigation at rest.
+- **Muted** (`oklch(0.64 0.035 200)`): Tertiary metadata and captions.
 - **Line Dark** (`rgba(238, 233, 223, 0.16)`): Divider lines and chip borders on dark surfaces.
 - **Line Light** (`rgba(21, 20, 18, 0.18)`): Divider lines on the light (accent) contact surface.
 
 ### Named Rules
-**The One Accent Rule.** Warm sandstone is the only saturated color. It must be the rarest voice on any screen. Use it for the primary action, the current location, and one deliberate emphasis per section.
+**The Two-Signal Rule.** Verdigris owns identity and action. Pale patina communicates live status only. Never use both as interchangeable decoration.
 
-**The No Pure Black Rule.** Backgrounds are tinted warm (#151412, not #000). Text is tinted cream (#eee9df, not #fff).
+**The No Pure Black Rule.** Backgrounds carry a mineral blue-green undertone and text carries a pearl tint. Neither pure black nor pure white belongs in the system.
 
 ## 3. Typography
 
@@ -153,8 +155,8 @@ This system is flat by default. Depth is created through tonal layering (ink →
 
 ### Buttons
 - **Shape:** Sharp corners (0px border-radius). Inline-flex with min-height 3.4rem.
-- **Primary:** Warm sandstone background (#c9825a), ink text, 1px transparent border, uppercase DM Mono label, 0.06em tracking.
-- **Primary hover:** Transparent background, sandstone text, sandstone border.
+- **Primary:** Verdigris background, ink text, 1px transparent border, uppercase DM Mono label, 0.06em tracking.
+- **Primary hover:** Transparent background with verdigris text and border.
 - **Light (on accent surface):** Ink background, paper text, ink border. Hover: transparent background, ink text.
 - **State:** `translateY(-3px)` on hover, `scale(0.985)` on active, `focus-visible` outline via global accent outline.
 
@@ -170,17 +172,17 @@ This system is flat by default. Depth is created through tonal layering (ink →
 ### Cards / Project Items
 - **Shape:** Rectangular media blocks (0px radius), aspect-ratio 1.65.
 - **Media:** Image or video fills block; hover scales to 1.04 and restores saturation.
-- **Launch badge:** 3.1rem square sandstone badge in top-right; rotates 45deg on hover.
-- **Details:** Title + description left-aligned; number label in sandstone above title.
+- **Launch badge:** Compact verdigris action label in the top-right with a short positional hover response.
+- **Details:** Title and description left-aligned; number label in verdigris above the title.
 
 ### Availability Card
 - **Shape:** Small rectangular card, 1px line-dark border, ink-soft background, backdrop blur.
-- **Accent dot:** Warm sandstone with pulsing ring animation.
+- **Signal dot:** Static pale patina with a soft matching ring.
 
 ## 6. Do's and Don'ts
 
 ### Do:
-- **Do** keep the warm sandstone accent rare and intentional.
+- **Do** keep verdigris focused on identity and action, and pale patina exclusive to live status.
 - **Do** use Manrope for everything except metadata, which uses DM Mono.
 - **Do** maintain sharp corners on every component; radii are 0.
 - **Do** cap body paragraphs at ~65ch.

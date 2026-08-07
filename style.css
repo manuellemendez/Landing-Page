@@ -481,11 +481,8 @@ video {
   border: 0;
   overflow: hidden;
   background:
-    linear-gradient(var(--paper-16) 1px, transparent 1px),
-    linear-gradient(90deg, var(--paper-16) 1px, transparent 1px),
     radial-gradient(circle at 52% 39%, var(--accent-10), transparent 45%),
     var(--surface);
-  background-size: 4.25rem 4.25rem, 4.25rem 4.25rem, auto, auto;
   color: var(--paper);
   cursor: pointer;
   clip-path: polygon(10% 0, 100% 0, 100% 91%, 89% 100%, 0 100%, 0 9%);

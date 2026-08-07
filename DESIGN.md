@@ -97,6 +97,7 @@ The system uses a focused full palette. Typography does most of the hierarchy wo
 - **Monospace labels, sans-serif everything else.** DM Mono handles metadata and small labels; Manrope carries headlines and body.
 - **Section numbers as wayfinding.** 01–04 labels run vertically on desktop, anchoring the scroll rhythm.
 - **Restrained motion.** Reveal-on-scroll for content, hover micro-interactions for interactive elements, full reduced-motion support.
+- **A character with a job.** The M-01 companion demonstrates interaction craft through cursor tracking, contextual responses, and one deliberate wave.
 
 ## 2. Colors
 
@@ -109,7 +110,7 @@ The palette borrows from oxidized copper rather than generic digital color: blue
 ### Neutral
 - **Ink** (`oklch(0.16 0.025 205)`): Primary background, nearly black with a blue-green mineral undertone.
 - **Ink Soft** (#1d1b18): Scrolled header background.
-- **Surface** (`oklch(0.225 0.032 205)`): Portrait frame and media backplates, slightly lighter than ink-soft.
+- **Surface** (`oklch(0.225 0.032 205)`): Character stage and media backplates, slightly lighter than ink-soft.
 - **Surface Raised** (`oklch(0.205 0.03 205)`): Project media backplates and other raised dark surfaces.
 - **Paper** (`oklch(0.93 0.018 195)`): Mineral pearl for primary text and borders.
 - **Paper Deep** (`oklch(0.84 0.026 195)`): Secondary text and navigation at rest.
@@ -144,7 +145,7 @@ The pairing is confident minimal: Manrope's tight apertures and high weight cont
 
 ## 4. Elevation
 
-This system is flat by default. Depth is created through tonal layering (ink → ink-soft → paper-deep), not through shadow. A single soft shadow appears under the availability card (`0 1.5rem 5rem rgba(0, 0, 0, 0.25)`) because it floats above the portrait edge. Glassmorphism is used sparingly: only the scrolled header and availability card use `backdrop-filter: blur()`.
+This system is flat by default. Depth is created through tonal layering (ink → ink-soft → paper-deep), not through shadow. The 3D companion creates its own depth through material and light while the surrounding interface stays flat. Glassmorphism is used sparingly on the scrolled header only.
 
 ### Named Rules
 **The Flat-By-Default Rule.** Surfaces sit flat. Use tonal contrast or a thin line (`--line-dark`) to separate them, not drop shadows.
@@ -175,9 +176,16 @@ This system is flat by default. Depth is created through tonal layering (ink →
 - **Launch badge:** Compact verdigris action label in the top-right with a short positional hover response.
 - **Details:** Title and description left-aligned; number label in verdigris above the title.
 
-### Availability Card
-- **Shape:** Small rectangular card, 1px line-dark border, ink-soft background, backdrop blur.
-- **Signal dot:** Static pale patina with a soft matching ring.
+### Availability Status
+- **Shape:** Lightweight edge-aligned status without a container or shadow.
+- **Signal dot:** Static pale patina with a soft matching ring, placed in the top rail of the character stage.
+
+### M-01 Interactive Companion
+- **Construction:** A custom Three.js field unit built from beveled mineral-metal geometry and verdigris face details.
+- **Behavior:** Head and eyes track fine-pointer movement. Activation triggers an articulated wave and contextual copy.
+- **Dialogue:** Contextual responses occupy a dedicated console below the stage and never cover the character.
+- **Performance:** The scene loads as a separate lazy chunk, pauses outside the viewport, caps pixel density, and disposes GPU resources on unmount.
+- **Fallback:** Reduced-motion users receive a static render. Browsers without WebGL receive a lightweight geometric face.
 
 ## 6. Do's and Don'ts
 

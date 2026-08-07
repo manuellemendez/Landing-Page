@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createLiquid } from "../components/canvasui/LiquidVanilla.js";
 import { ParticleScroll } from "../components/canvasui/ParticleScroll.jsx";
+import HeroCharacter from "./HeroCharacter.jsx";
 
 const focusableSelector = [
   "a[href]",
@@ -271,20 +272,15 @@ export default function Portfolio() {
                 I build React interfaces for operational teams. My background in banking taught me to ask better questions before I start writing code.
               </p>
               <div className="hero-actions reveal">
-                <a className="button button-primary" href="#work">See selected work <span aria-hidden="true">↓</span></a>
+                <a className="button button-primary" href="#work" data-companion-message="Good call. The work tells the story.">See selected work <span aria-hidden="true">↓</span></a>
                 <div className="hero-secondary-actions">
-                  <a className="text-link" href="https://www.linkedin.com/in/manuel-mendez-379025190/" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-                  <a className="text-link" href="resume.html">Résumé <span aria-hidden="true">↗</span></a>
+                  <a className="text-link" href="https://www.linkedin.com/in/manuel-mendez-379025190/" target="_blank" rel="noreferrer" data-companion-message="Professional reconnaissance? I approve.">LinkedIn <span aria-hidden="true">↗</span></a>
+                  <a className="text-link" href="resume.html" data-companion-message="Résumé checked. Facts in formation.">Résumé <span aria-hidden="true">↗</span></a>
                 </div>
               </div>
             </div>
 
-            <div className="hero-portrait-wrap reveal">
-              <div className="portrait-frame">
-                <img className="hero-portrait" src="/Images/Me.jpg" alt="Portrait of Manuel Mendez" width="709" height="938" fetchPriority="high" decoding="async" />
-              </div>
-              <div className="availability-card"><span className="availability-dot" aria-hidden="true" /><span>Available for the right team</span></div>
-            </div>
+            <HeroCharacter />
           </div>
 
           <div className="hero-index" aria-hidden="true">

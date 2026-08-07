@@ -460,65 +460,238 @@ video {
   transform-origin: left;
 }
 
-.hero-portrait-wrap {
+.hero-character-wrap {
   position: relative;
+  z-index: 2;
+  container-type: inline-size;
+  display: grid;
   justify-self: end;
   width: min(100%, 27rem);
-  margin-top: 2rem;
+  margin: 2rem 0 0;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
 }
 
-.portrait-frame {
+.hero-character {
   position: relative;
-  aspect-ratio: 0.76;
+  display: block;
+  width: 100%;
+  aspect-ratio: 0.8;
+  padding: 0;
+  border: 0;
   overflow: hidden;
-  background: var(--surface);
+  background:
+    linear-gradient(var(--paper-16) 1px, transparent 1px),
+    linear-gradient(90deg, var(--paper-16) 1px, transparent 1px),
+    radial-gradient(circle at 52% 39%, var(--accent-10), transparent 45%),
+    var(--surface);
+  background-size: 4.25rem 4.25rem, 4.25rem 4.25rem, auto, auto;
+  color: var(--paper);
+  cursor: pointer;
   clip-path: polygon(10% 0, 100% 0, 100% 91%, 89% 100%, 0 100%, 0 9%);
+  grid-row: 1;
+  isolation: isolate;
 }
 
-.portrait-frame::after {
+.hero-character::before {
   position: absolute;
+  z-index: 1;
+  top: 10%;
+  left: 50%;
+  width: 64%;
+  aspect-ratio: 1;
+  border: 1px solid var(--accent-34);
+  border-radius: 50%;
+  content: "";
+  opacity: 0.45;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hero-character::after {
+  position: absolute;
+  z-index: 5;
   inset: 0;
   border: 1px solid var(--accent-34);
   content: "";
   clip-path: inherit;
+  pointer-events: none;
 }
 
-.hero-portrait {
+.hero-character:focus-visible {
+  outline: none;
+}
+
+.hero-character:focus-visible::after {
+  inset: 0.35rem;
+  border: 2px solid var(--accent);
+}
+
+.character-canvas {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 24%;
-  filter: grayscale(1) contrast(1.08) brightness(0.84);
-  transform: scale(1.015);
-  transition: filter 240ms ease, transform 420ms var(--ease-out);
+  transition: filter 300ms ease, transform 500ms var(--ease-out);
+}
+
+.character-input,
+.character-model-label,
+.character-instruction {
+  position: absolute;
+  z-index: 4;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.57rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.character-input {
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.character-input::before {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 0.22rem var(--signal-34);
+  content: "";
+}
+
+.character-input-touch {
+  display: none;
+}
+
+.character-model-label {
+  bottom: 1rem;
+  left: 1rem;
+  color: var(--muted);
+}
+
+.character-instruction {
+  right: 1rem;
+  bottom: 1rem;
+  color: var(--paper-deep);
+}
+
+.character-fallback {
+  position: absolute;
+  z-index: 2;
+  top: 29%;
+  left: 50%;
+  display: none;
+  width: 42%;
+  aspect-ratio: 1.2;
+  align-items: center;
+  justify-content: center;
+  gap: 13%;
+  border: 1px solid var(--accent-46);
+  background: var(--ink-soft);
+  clip-path: polygon(10% 0, 90% 0, 100% 15%, 100% 85%, 90% 100%, 10% 100%, 0 85%, 0 15%);
+  transform: translateX(-50%);
+}
+
+.character-fallback-eye {
+  width: 19%;
+  height: 12%;
+  background: var(--accent);
+}
+
+.hero-character[data-render-state="fallback"] .character-canvas {
+  display: none;
+}
+
+.hero-character[data-render-state="loading"] .character-fallback,
+.hero-character[data-render-state="fallback"] .character-fallback {
+  display: flex;
+}
+
+.character-callout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 100%;
+  min-height: 4.6rem;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 2rem);
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--line-dark);
+  background: var(--ink-soft);
+  grid-row: 2;
+  grid-template-columns: minmax(6.5rem, 0.7fr) minmax(0, 1.3fr);
+  pointer-events: none;
+}
+
+.character-callout::after {
+  display: none;
+}
+
+.character-callout-label {
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 0.53rem;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+}
+
+.character-callout-message {
+  color: var(--paper-deep);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  text-wrap: pretty;
 }
 
 .availability-card {
   position: absolute;
-  z-index: 3;
-  bottom: 2.4rem;
-  left: -3rem;
+  z-index: 6;
+  top: 1rem;
+  bottom: auto;
+  left: 1rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.15rem;
-  border: 1px solid var(--line-dark);
-  color: var(--paper);
-  background: var(--ink-90);
-  box-shadow: var(--shadow-soft);
+  gap: 0.55rem;
+  padding: 0;
+  border: 0;
+  color: var(--paper-deep);
+  background: transparent;
+  box-shadow: none;
   font-family: var(--mono);
-  font-size: 0.67rem;
+  font-size: 0.57rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  backdrop-filter: blur(14px);
+  letter-spacing: 0.12em;
+  pointer-events: none;
 }
 
 .availability-dot {
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 0.4rem;
+  height: 0.4rem;
   border-radius: 50%;
   background: var(--signal);
-  box-shadow: 0 0 0 0.28rem var(--signal-34);
+  box-shadow: 0 0 0 0.22rem var(--signal-34);
+}
+
+.availability-copy-short {
+  display: none;
+}
+
+/* The panel is narrower than the viewport, so the long availability copy can
+   run into the tracking readout opposite it even on desktop. */
+@container (max-width: 25rem) {
+  .availability-copy-long {
+    display: none;
+  }
+
+  .availability-copy-short {
+    display: inline;
+  }
 }
 
 .hero-index {
@@ -1200,9 +1373,9 @@ video {
     transform: scaleX(0.25);
   }
 
-  .hero-portrait-wrap:hover .hero-portrait {
-    filter: grayscale(0.25) contrast(1.04) brightness(0.92);
-    transform: scale(1.035);
+  .hero-character:hover .character-canvas {
+    filter: brightness(1.06) saturate(1.06);
+    transform: scale(1.012);
   }
 
   .project-media:hover img,
@@ -1362,14 +1535,10 @@ video {
     max-width: 36ch;
   }
 
-  .hero-portrait-wrap {
+  .hero-character-wrap {
     width: min(83vw, 27rem);
     justify-self: center;
     margin: 0 auto 2rem;
-  }
-
-  .availability-card {
-    left: -1.5rem;
   }
 
   .hero-index {
@@ -1508,10 +1677,17 @@ video {
     gap: 1.5rem;
   }
 
-  .availability-card {
-    right: -0.5rem;
-    bottom: 1.5rem;
-    left: auto;
+  .character-callout {
+    gap: 0.4rem;
+    grid-template-columns: 1fr;
+  }
+
+  .availability-copy-long {
+    display: none;
+  }
+
+  .availability-copy-short {
+    display: inline;
   }
 
   .github-link {
@@ -1522,6 +1698,16 @@ video {
   .footer-links {
     flex-direction: column;
     gap: 0.75rem;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .character-input-pointer {
+    display: none;
+  }
+
+  .character-input-touch {
+    display: inline;
   }
 }
 

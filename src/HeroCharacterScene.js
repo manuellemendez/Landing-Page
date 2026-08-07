@@ -2,6 +2,13 @@ import * as THREE from "three";
 import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+const mix = (from, to, amount) => from + (to - from) * amount;
+// Smoothstep: gestures that hold a pose need to arrive and leave without the
+// linear ramp showing at either end.
+const easeInOut = (t) => {
+  const x = clamp(t, 0, 1);
+  return x * x * (3 - 2 * x);
+};
 const damp = (current, target, speed, delta) =>
   THREE.MathUtils.lerp(current, target, 1 - Math.exp(-speed * delta));
 
@@ -290,7 +297,8 @@ function createLeg(side, materials) {
   addPart(shin, taperedSlab(0.6, 0.68, 0.24, 0.92), materials.plate, [0, -0.86, 0.14]);
   addPart(shin, slab(0.5, 0.1, 0.2, 0.04), materials.trim, [0, -0.95, 0.55]);
 
-  return hip;
+  // Hip and knee are returned separately so the zen pose can fold the leg.
+  return { hip, knee };
 }
 
 /* ------------------------------------------------------------------ *
@@ -343,7 +351,9 @@ function buildCompanion(scene, materials, textures) {
   const leftArm = createArm(-1, materials);
   const rightArm = createArm(1, materials);
   body.add(leftArm.shoulder, rightArm.shoulder);
-  body.add(createLeg(-1, materials), createLeg(1, materials));
+  const leftLeg = createLeg(-1, materials);
+  const rightLeg = createLeg(1, materials);
+  body.add(leftLeg.hip, rightLeg.hip);
 
   /* ---- neck ---- */
   addPart(body, disc(0.38, 0.36, "neck"), materials.hullDeep, [0, 1.12, 0]);
@@ -487,6 +497,8 @@ function buildCompanion(scene, materials, textures) {
     mast,
     leftArm,
     rightArm,
+    leftLeg,
+    rightLeg,
     scanRing,
     pulseRing,
   };
@@ -572,8 +584,20 @@ export function mountCompanionScene({ canvas, container, motionQuery }) {
 
   const clock = new THREE.Clock();
   const lookTarget = { x: 0, y: 0 };
-  let waveStartedAt = -Infinity;
+
+  /* ---- gestures ----
+   * Idle gestures run off `elapsed`, which only advances on frames that
+   * actually rendered. Wall-clock timing would let a gesture "run" while the
+   * hero is scrolled out of view and then snap mid-pose when it returns. */
+  const GESTURES = { wave: 1.25, zen: 9 };
+  let elapsed = 0;
+  let gesture = null;
+  let nextGestureAt = 6 + Math.random() * 6;
   let animationFrame = 0;
+
+  const startGesture = (name) => {
+    gesture = { name, at: elapsed, duration: GESTURES[name] };
+  };
   let isVisible = true;
   let isDisposed = false;
   let mastAngle = 0;
@@ -609,16 +633,47 @@ export function mountCompanionScene({ canvas, container, motionQuery }) {
     if (isDisposed) return;
     const delta = Math.min(clock.getDelta(), 0.05);
     const seconds = time * 0.001;
+    elapsed += delta;
 
-    /* ---- look ---- */
-    companion.head.rotation.y = damp(companion.head.rotation.y, lookTarget.x * 0.42, 7, delta);
-    companion.head.rotation.x = damp(companion.head.rotation.x, -lookTarget.y * 0.2, 7, delta);
-    companion.body.rotation.y = damp(companion.body.rotation.y, lookTarget.x * 0.09, 4, delta);
-    companion.body.rotation.x = damp(companion.body.rotation.x, -lookTarget.y * 0.03, 4, delta);
+    /* ---- gesture scheduling ---- */
+    if (!motionQuery.matches) {
+      if (gesture && elapsed - gesture.at >= gesture.duration) {
+        gesture = null;
+        nextGestureAt = elapsed + 7 + Math.random() * 8;
+      }
+      // Zen is the rarer of the two, so it stays an event rather than a habit.
+      if (!gesture && elapsed >= nextGestureAt) {
+        startGesture(Math.random() < 0.35 ? "zen" : "wave");
+      }
+    }
+
+    const gestureTime = gesture ? elapsed - gesture.at : 0;
+    const isWaving = gesture?.name === "wave";
+    const waveProgress = isWaving ? clamp(gestureTime / gesture.duration, 0, 1) : 1;
+    const waveEnvelope = isWaving ? Math.sin(waveProgress * Math.PI) : 0;
+    const flick = Math.sin(waveProgress * Math.PI * 6);
+    // The wave rides a sine; zen holds, so it ramps in, sits, and ramps out.
+    const zen =
+      gesture?.name === "zen"
+        ? easeInOut(Math.min(gestureTime / 1.4, (gesture.duration - gestureTime) / 1.4))
+        : 0;
+
+    /* ---- look: a meditating robot stops tracking the cursor ---- */
+    const lookX = lookTarget.x * (1 - zen);
+    const lookY = lookTarget.y * (1 - zen);
+    companion.head.rotation.y = damp(companion.head.rotation.y, lookX * 0.42, 7, delta);
+    companion.head.rotation.x = damp(
+      companion.head.rotation.x,
+      -lookY * 0.2 + zen * 0.24,
+      7,
+      delta,
+    );
+    companion.body.rotation.y = damp(companion.body.rotation.y, lookX * 0.09, 4, delta);
+    companion.body.rotation.x = damp(companion.body.rotation.x, -lookY * 0.03, 4, delta);
 
     companion.eyes.forEach(({ mesh, baseX }) => {
-      mesh.position.x = damp(mesh.position.x, baseX + lookTarget.x * 0.075, 10, delta);
-      mesh.position.y = damp(mesh.position.y, 0.64 - lookTarget.y * 0.045, 10, delta);
+      mesh.position.x = damp(mesh.position.x, baseX + lookX * 0.075, 10, delta);
+      mesh.position.y = damp(mesh.position.y, 0.64 - lookY * 0.045, 10, delta);
     });
 
     /* ---- blink ---- */
@@ -627,12 +682,14 @@ export function mountCompanionScene({ canvas, container, motionQuery }) {
       blinkPhase > 5.02 && blinkPhase < 5.18
         ? Math.max(0.1, Math.abs((blinkPhase - 5.1) / 0.08))
         : 1;
+    // Eyes fall to a slit while meditating.
+    const eyeOpen = Math.min(blinkScale, 1 - zen * 0.84);
     companion.eyes.forEach(({ mesh }) => {
-      mesh.scale.y = damp(mesh.scale.y, blinkScale, 32, delta);
+      mesh.scale.y = damp(mesh.scale.y, eyeOpen, 32, delta);
     });
     companion.halo.material.opacity = damp(
       companion.halo.material.opacity,
-      0.16 + blinkScale * 0.16,
+      (0.16 + eyeOpen * 0.16) * (1 - zen * 0.5),
       18,
       delta,
     );
@@ -645,25 +702,50 @@ export function mountCompanionScene({ canvas, container, motionQuery }) {
     });
     companion.beacon.material.emissiveIntensity = 1.2 + Math.sin(seconds * 4.4) * 0.8;
 
-    /* ---- wave: shoulder swing, elbow flick, whole-body counter-lean ---- */
-    const waveProgress = clamp((time - waveStartedAt) / 1250, 0, 1);
-    const waveEnvelope = Math.sin(waveProgress * Math.PI);
-    const flick = Math.sin(waveProgress * Math.PI * 6);
-
+    /* ---- arms: rest pose, wave swing, then the zen fold blended over both ---- */
     // Rest pose angles the hands slightly inward; splayed arms read as a
     // scarecrow. Sign is mirrored per side so both swing toward the torso.
-    companion.leftArm.shoulder.rotation.z = 0.045 - waveEnvelope * 2.45;
-    companion.leftArm.shoulder.rotation.x = -waveEnvelope * 0.22;
-    companion.leftArm.elbow.rotation.z = 0.03 + waveEnvelope * (0.5 + flick * 0.34);
-    companion.leftArm.hand.rotation.z = waveEnvelope * flick * 0.3;
-    companion.rightArm.shoulder.rotation.z =
+    const restLeftShoulderZ = 0.045 - waveEnvelope * 2.45;
+    const restRightShoulderZ =
       -0.045 + Math.sin(seconds * 1.15) * 0.03 - waveEnvelope * 0.12;
-    companion.rightArm.elbow.rotation.z = -0.03 - Math.sin(seconds * 1.15 + 0.6) * 0.03;
+
+    // Hands settle onto the knees rather than folding up at the chest.
+    companion.leftArm.shoulder.rotation.z = mix(restLeftShoulderZ, 0.44, zen);
+    companion.leftArm.shoulder.rotation.x = mix(-waveEnvelope * 0.22, -0.34, zen);
+    companion.leftArm.elbow.rotation.z = mix(
+      0.03 + waveEnvelope * (0.5 + flick * 0.34),
+      0.2,
+      zen,
+    );
+    companion.leftArm.elbow.rotation.x = mix(0, -0.46, zen);
+    companion.leftArm.hand.rotation.z = waveEnvelope * flick * 0.3 * (1 - zen);
+
+    companion.rightArm.shoulder.rotation.z = mix(restRightShoulderZ, -0.44, zen);
+    companion.rightArm.shoulder.rotation.x = mix(0, -0.34, zen);
+    companion.rightArm.elbow.rotation.z = mix(
+      -0.03 - Math.sin(seconds * 1.15 + 0.6) * 0.03,
+      -0.2,
+      zen,
+    );
+    companion.rightArm.elbow.rotation.x = mix(0, -0.46, zen);
+
+    /* ---- legs: thighs up and out, shins folded back across each other ---- */
+    // Euler XYZ applies Z first, so the hip rolls the leg outward and then
+    // lifts it. That leaves the knee's own frame tilted, so the shin needs a
+    // counter-roll on Z or it folds down-and-out into a squat.
+    [companion.leftLeg, companion.rightLeg].forEach((leg, index) => {
+      const side = index === 0 ? -1 : 1;
+      leg.hip.rotation.x = mix(0, -1.46, zen);
+      leg.hip.rotation.z = mix(0, side * 0.52, zen);
+      leg.knee.rotation.x = mix(0, 2.05, zen);
+      leg.knee.rotation.z = mix(0, side * -0.72, zen);
+    });
+
     companion.rig.rotation.y = damp(companion.rig.rotation.y, waveEnvelope * -0.09, 6, delta);
 
     /* ---- ground rings ---- */
-    companion.scanRing.material.opacity = 0.18 + beat * 0.12;
-    companion.scanRing.rotation.z += delta * 0.25;
+    companion.scanRing.material.opacity = 0.18 + beat * 0.12 + zen * 0.14;
+    companion.scanRing.rotation.z += delta * 0.25 * (1 - zen * 0.7);
     if (waveProgress < 1) {
       const spread = 1 + waveProgress * 1.5;
       companion.pulseRing.scale.set(spread, spread, 1);
@@ -674,17 +756,20 @@ export function mountCompanionScene({ canvas, container, motionQuery }) {
 
     /* ---- idle: breathing plus a mast that lags behind the head ---- */
     if (!motionQuery.matches) {
-      companion.rig.position.y = Math.sin(seconds * 1.3) * 0.05;
-      companion.rig.rotation.z = Math.sin(seconds * 0.7) * 0.008;
-      const breath = 1 + Math.sin(seconds * 1.3) * 0.012;
-      companion.body.scale.set(1, breath, 1);
+      // Folding the legs raises the figure's lowest point, so the rig drops to
+      // stay framed, and the breath slows and deepens — that sells the pose
+      // more than the limbs do.
+      const bob = Math.sin(seconds * mix(1.3, 0.62, zen));
+      companion.rig.position.y = bob * mix(0.05, 0.085, zen) - zen * 0.52;
+      companion.rig.rotation.z = Math.sin(seconds * 0.7) * 0.008 * (1 - zen);
+      companion.body.scale.set(1, 1 + bob * mix(0.012, 0.03, zen), 1);
 
       const mastTarget = -companion.head.rotation.y * 0.55;
       mastVelocity += (mastTarget - mastAngle) * 42 * delta;
       mastVelocity *= Math.exp(-7 * delta);
       mastAngle += mastVelocity * delta;
       companion.mast.rotation.z = clamp(mastAngle, -0.5, 0.5);
-      companion.mast.rotation.x = Math.sin(seconds * 1.9) * 0.04;
+      companion.mast.rotation.x = mix(Math.sin(seconds * 1.9) * 0.04, 0.16, zen);
     }
 
     renderer.render(scene, camera);
@@ -720,7 +805,8 @@ export function mountCompanionScene({ canvas, container, motionQuery }) {
       lookTarget.y = y;
     },
     wave() {
-      waveStartedAt = performance.now();
+      // A click interrupts whatever idle gesture is running.
+      startGesture("wave");
     },
     dispose() {
       if (isDisposed) return;

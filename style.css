@@ -2236,3 +2236,44 @@ h4 {
     font-size: clamp(2.1rem, 9vw, 3rem);
   }
 }
+
+/* --- Companion, unboxed ------------------------------------
+   The robot used to sit in a filled, bordered panel. Stripping
+   the surface lets it stand on the hero itself; the ground
+   shadow in the Three.js scene is what grounds it now. */
+.hero-character {
+  overflow: visible;
+  background: transparent;
+}
+
+.hero-character::before,
+.hero-character::after {
+  display: none;
+}
+
+.hero-character:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.45);
+  outline-offset: 6px;
+}
+
+.character-callout {
+  padding: 1rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--line-dark);
+  background: transparent;
+}
+
+.character-model-label,
+.character-instruction {
+  bottom: -0.35rem;
+}
+
+.character-input {
+  top: -0.25rem;
+  right: 0;
+}
+
+.availability-card {
+  top: -0.25rem;
+  left: 0;
+}

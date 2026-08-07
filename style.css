@@ -1,40 +1,46 @@
 :root {
-  --ink: oklch(0.16 0.025 205);
-  --ink-soft: oklch(0.195 0.027 205);
-  --ink-08: oklch(0.16 0.025 205 / 0.08);
-  --ink-16: oklch(0.16 0.025 205 / 0.16);
-  --ink-18: oklch(0.16 0.025 205 / 0.18);
-  --ink-20: oklch(0.16 0.025 205 / 0.2);
-  --ink-28: oklch(0.16 0.025 205 / 0.28);
-  --ink-38: oklch(0.16 0.025 205 / 0.38);
-  --ink-82: oklch(0.16 0.025 205 / 0.82);
-  --ink-84: oklch(0.16 0.025 205 / 0.84);
-  --ink-65: oklch(0.16 0.025 205 / 0.65);
-  --ink-90: oklch(0.16 0.025 205 / 0.9);
-  --paper: oklch(0.93 0.018 195);
-  --paper-deep: oklch(0.84 0.026 195);
-  --paper-16: oklch(0.93 0.018 195 / 0.16);
-  --paper-22: oklch(0.93 0.018 195 / 0.22);
-  --paper-34: oklch(0.93 0.018 195 / 0.34);
-  --accent: oklch(0.7 0.115 190);
-  --accent-08: oklch(0.7 0.115 190 / 0.08);
-  --accent-10: oklch(0.7 0.115 190 / 0.1);
-  --accent-34: oklch(0.7 0.115 190 / 0.34);
-  --accent-46: oklch(0.7 0.115 190 / 0.46);
-  --accent-50: oklch(0.7 0.115 190 / 0.5);
-  --signal: oklch(0.84 0.1 150);
-  --signal-34: oklch(0.84 0.1 150 / 0.34);
-  --muted: oklch(0.64 0.035 200);
-  --surface: oklch(0.225 0.032 205);
-  --surface-raised: oklch(0.205 0.03 205);
-  --shadow-soft: 0 1.5rem 5rem oklch(0.1 0.025 205 / 0.34);
+  /* Ground is pure black; every other value is an opacity step off white.
+     No chromatic accent anywhere — contrast carries the whole hierarchy. */
+  --ink: #000;
+  --ink-soft: #0a0a0b;
+  --ink-08: rgba(0, 0, 0, 0.08);
+  --ink-16: rgba(0, 0, 0, 0.16);
+  --ink-18: rgba(0, 0, 0, 0.18);
+  --ink-20: rgba(0, 0, 0, 0.2);
+  --ink-28: rgba(0, 0, 0, 0.28);
+  --ink-38: rgba(0, 0, 0, 0.38);
+  --ink-82: rgba(0, 0, 0, 0.82);
+  --ink-84: rgba(0, 0, 0, 0.84);
+  --ink-65: rgba(0, 0, 0, 0.65);
+  --ink-90: rgba(0, 0, 0, 0.9);
+  --paper: #ededee;
+  --paper-deep: rgba(237, 237, 238, 0.78);
+  --paper-16: rgba(255, 255, 255, 0.13);
+  --paper-22: rgba(255, 255, 255, 0.18);
+  --paper-34: rgba(255, 255, 255, 0.24);
+  --accent: #ededee;
+  --accent-08: rgba(255, 255, 255, 0.03);
+  --accent-10: rgba(255, 255, 255, 0.05);
+  --accent-34: rgba(255, 255, 255, 0.13);
+  --accent-46: rgba(255, 255, 255, 0.22);
+  --accent-50: rgba(255, 255, 255, 0.28);
+  --signal: #ededee;
+  --signal-34: rgba(255, 255, 255, 0.18);
+  --muted: rgba(237, 237, 238, 0.4);
+  --surface: #060607;
+  --surface-raised: #0a0a0b;
+  --shadow-soft: 0 1.5rem 5rem rgba(0, 0, 0, 0.6);
   --line-dark: var(--paper-16);
   --line-light: var(--ink-18);
-  --display: "Manrope", "Helvetica Neue", Arial, sans-serif;
-  --mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
-  --container: min(92vw, 1440px);
-  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Inter Tight", var(--sans);
+  --chip: "Unbounded", "Archivo Expanded", var(--sans);
+  /* Kept for the ~35 existing label rules; the system has no monospace now. */
+  --mono: var(--sans);
+  --heading-weight: 300;
+  --container: min(92vw, 1180px);
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease: var(--ease-out);
 }
 
@@ -51,10 +57,10 @@ body {
   margin: 0;
   overflow-x: hidden;
   color: var(--paper);
-  background:
-    radial-gradient(circle at 80% 10%, var(--accent-08), transparent 22rem),
-    var(--ink);
-  font-family: var(--display);
+  background: var(--ink);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
@@ -65,7 +71,7 @@ body::before {
   inset: 0;
   pointer-events: none;
   content: "";
-  opacity: 0.035;
+  opacity: 0.02;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
 }
 
@@ -1732,5 +1738,501 @@ video {
 
   .liquid-output {
     display: none;
+  }
+}
+
+/* ============================================================
+   Terafab type system
+   Ported from terafab.ai: Inter Tight at weight 300 on a tight
+   negative track for every heading, Inter in sentence case for
+   every label, 2px radii, 13%-white hairlines. Layered last so
+   it wins over the older Manrope/DM Mono rules above.
+   ============================================================ */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--display);
+  font-weight: var(--heading-weight);
+}
+
+/* --- Labels ------------------------------------------------
+   The old system shouted these in uppercase mono at 0.14em.
+   Terafab keeps them small, sentence case, barely tracked, and
+   dimmed to 40% — they read as metadata, not as headings. */
+.eyebrow,
+.section-label,
+.hero-index,
+.timeline-meta,
+.tag-list li,
+.project-stack li,
+.project-number,
+.tool-group > p,
+.site-footer,
+.github-link,
+.video-prompt,
+.project-tech-reveal li,
+.principle-number,
+.character-input,
+.character-model-label,
+.character-instruction,
+.character-callout-label,
+.availability-card,
+.copy-email {
+  font-family: var(--sans);
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.eyebrow {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.section-label span {
+  color: var(--paper);
+}
+
+.hero-index {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.timeline-meta {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.timeline-company {
+  margin: 0.6rem 0 1.4rem;
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.tag-list li,
+.project-stack li,
+.project-tech-reveal li {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.tag-list li:not(:last-child)::after,
+.project-stack li:not(:last-child)::after {
+  color: var(--paper-34);
+}
+
+.project-tech-reveal li {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--paper-22);
+  border-radius: 4px;
+  color: var(--paper-deep);
+}
+
+.project-number,
+.tool-group > p {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.github-link,
+.site-footer,
+.video-prompt {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.principle-number {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.character-input,
+.character-model-label,
+.character-instruction,
+.character-callout-label,
+.availability-card {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+/* --- Headings ----------------------------------------------
+   Weight 300 at -0.032em with leading of 1.02. The old scale
+   ran to 8.8rem at 800 weight; terafab tops out near 3.5rem
+   and lets the tracking do the work instead of the size. */
+.hero-title {
+  max-width: 13ch;
+  margin: 1.8rem 0 2rem;
+  font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+
+.hero-title-accent {
+  display: block;
+  font-weight: 300;
+  color: rgba(237, 237, 238, 0.45);
+}
+
+.hero-intro {
+  max-width: 46ch;
+  font-family: var(--display);
+  font-size: clamp(1.05rem, 1.5vw, 1.4rem);
+  font-weight: 300;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  color: rgba(237, 237, 238, 0.82);
+}
+
+.statement,
+.experience-heading h2,
+.work-heading h2,
+.toolkit-content h2,
+.contact h2 {
+  font-size: clamp(2.15rem, 3.85vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.032em;
+  color: #fff;
+}
+
+.statement {
+  max-width: 20ch;
+}
+
+.statement em {
+  font-style: normal;
+  font-weight: 300;
+  color: var(--muted);
+}
+
+.experience-heading h2,
+.toolkit-content h2 {
+  max-width: 18ch;
+}
+
+.work-heading h2 {
+  max-width: 14ch;
+}
+
+.contact h2 {
+  max-width: 16ch;
+  margin: 1.5rem 0 1.75rem;
+}
+
+.timeline-main h3,
+.project-details h3 {
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.principle h3 {
+  margin: -0.15rem 0 0.45rem;
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+/* --- Body copy --------------------------------------------- */
+.about-lead {
+  font-family: var(--display);
+  font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.024em;
+  color: rgba(237, 237, 238, 0.82);
+}
+
+.principle p,
+.work-heading p,
+.project-details p,
+.timeline-main > p:not(.timeline-company),
+.contact-copy {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(237, 237, 238, 0.7);
+}
+
+.tool-group li {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  color: rgba(237, 237, 238, 0.7);
+}
+
+/* --- Wordmark ----------------------------------------------
+   Unbounded, uppercase and tracked, boxed in a hairline. The
+   angular clip-path went with the old system. */
+.wordmark-mark {
+  width: auto;
+  height: auto;
+  padding: 4px 7px;
+  border: 1px solid var(--paper-22);
+  border-radius: 4px;
+  color: rgba(237, 237, 238, 0.88);
+  background: transparent;
+  font-family: var(--chip);
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  clip-path: none;
+}
+
+.wordmark-name {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.project-media-mark {
+  font-family: var(--chip);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* --- Controls ----------------------------------------------
+   One button shape: 2px radius, Inter 500, white fill on black
+   text. Ghost variants are the same box with a hairline. */
+.site-nav {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+
+.site-nav a {
+  color: rgba(237, 237, 238, 0.62);
+}
+
+.site-nav .nav-cta {
+  padding: 11px 18px;
+  border-radius: 2px;
+  color: #0a0a0b;
+  background: var(--paper);
+}
+
+.button,
+.copy-email {
+  min-height: 0;
+  padding: 11px 18px;
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  gap: 0.6rem;
+}
+
+.button-primary,
+.button-light {
+  border-color: var(--paper);
+  color: #0a0a0b;
+  background: var(--paper);
+}
+
+.copy-email {
+  border: 1px solid var(--paper-22);
+  color: var(--paper-deep);
+  background: transparent;
+}
+
+.copy-email:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.45);
+}
+
+.text-link {
+  padding-block: 0.35rem;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  color: rgba(237, 237, 238, 0.62);
+}
+
+.text-link::after {
+  display: none;
+}
+
+.project-launch {
+  min-height: 0;
+  padding: 9px 13px;
+  border-radius: 2px;
+  color: #0a0a0b;
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.45);
+  outline-offset: 3px;
+}
+
+/* --- Surfaces ----------------------------------------------
+   The contact block used to invert to a solid accent panel.
+   In a mono system that reads as a mistake, so it stays black
+   and a hairline carries the section break instead. */
+.contact {
+  width: var(--container);
+  margin-inline: auto;
+  padding: clamp(6rem, 11vw, 9rem) 0;
+  border-top: 1px solid var(--line-dark);
+  color: var(--paper);
+  background: var(--ink);
+}
+
+.contact .eyebrow {
+  color: var(--muted);
+}
+
+.hero-character,
+.character-fallback {
+  clip-path: none;
+}
+
+.hero-character::after {
+  clip-path: none;
+}
+
+.hero-character {
+  background: var(--surface);
+}
+
+/* --- Motion ------------------------------------------------ */
+.reveal {
+  transform: translateY(12px);
+  transition:
+    opacity 800ms var(--ease),
+    transform 800ms var(--ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .site-nav a:hover,
+  .text-link:hover,
+  .github-link:hover,
+  .footer-links a:hover {
+    color: #fff;
+  }
+
+  .github-link:hover {
+    transform: none;
+  }
+
+  .button:hover {
+    transform: none;
+  }
+
+  .button-primary:hover,
+  .button-light:hover,
+  .site-nav .nav-cta:hover {
+    border-color: #fff;
+    color: #0a0a0b;
+    background: #fff;
+    transform: none;
+  }
+
+  .copy-email:hover {
+    border-color: var(--paper-34);
+    background: rgba(255, 255, 255, 0.05);
+    transform: none;
+  }
+
+  .project-media-code:hover .project-media-mark {
+    color: var(--paper-deep);
+  }
+}
+
+/* --- Responsive restatements -------------------------------
+   The breakpoints above still carry the old display scale, so
+   the new one is restated here rather than edited in place. */
+@media (max-width: 1050px) {
+  .hero-title {
+    font-size: clamp(2.3rem, 5.6vw, 3.6rem);
+  }
+}
+
+@media (max-width: 760px) {
+  .site-nav a {
+    font-family: var(--display);
+    font-size: clamp(1.9rem, 8.5vw, 3rem);
+    font-weight: 300;
+    letter-spacing: -0.035em;
+    color: #fff;
+  }
+
+  .site-nav .nav-cta {
+    margin: 2rem 0 0;
+    padding: 13px 18px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    color: #0a0a0b;
+  }
+
+  .nav-toggle {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  .hero-title {
+    max-width: 11ch;
+    font-size: clamp(2.4rem, 10vw, 3.4rem);
+  }
+
+  .statement,
+  .experience-heading h2,
+  .work-heading h2,
+  .toolkit-content h2 {
+    font-size: clamp(2rem, 8.2vw, 2.9rem);
+  }
+
+  .timeline-main h3,
+  .project-details h3 {
+    font-size: clamp(1.5rem, 6.4vw, 2.1rem);
+  }
+
+  .contact,
+  .site-footer {
+    width: 86vw;
+  }
+
+  .contact {
+    padding: 6rem 0;
+  }
+
+  .contact h2 {
+    font-size: clamp(2.1rem, 9vw, 3rem);
   }
 }

@@ -347,6 +347,22 @@ export default function Portfolio() {
               </a>
               <div className="project-details"><div className="project-number">02 / Team build</div><h3>Happy Times</h3><p>A location-based full-stack application that helped people find happy-hour options around Calgary, created with a collaborative product team.</p><ul className="project-stack" aria-label="Project technology"><li>React</li><li>Node + Express</li><li>Map-based geolocation</li></ul></div>
             </article>
+            <article className="project project-featured reveal">
+              <a className="project-media" href="https://github.com/manuellemendez/Kindi" target="_blank" rel="noreferrer" aria-label="View Kindi repository on GitHub">
+                <img src="/Images/kindi-dashboard.png" alt="Brotes dashboard showing collection trend, monthly overview, and families by amount owed" width="3198" height="1524" loading="lazy" decoding="async" />
+                <span className="project-launch" aria-hidden="true">↗</span>
+                <ul className="project-tech-reveal" aria-hidden="true"><li>React 19</li><li>TypeScript</li><li>Vite</li><li>Firebase</li><li>Tailwind v4</li></ul>
+              </a>
+              <div className="project-details"><div className="project-number">03 / Private build</div><h3>Kindi</h3><p>A family-finance app built for a kindergarten's front office—tracking dues, budgets, and payments, with Firestore rules that keep every record append-only.</p><ul className="project-stack" aria-label="Project technology"><li>React + TypeScript</li><li>Firebase</li><li>Vite</li></ul></div>
+            </article>
+            <article className="project project-secondary reveal">
+              <a className="project-media project-media-code" href="https://github.com/manuellemendez/zoombies" target="_blank" rel="noreferrer" aria-label="View Zombie Survival repository on GitHub">
+                <span className="project-media-mark" aria-hidden="true">Zoombies</span>
+                <span className="project-launch" aria-hidden="true">↗</span>
+                <ul className="project-tech-reveal" aria-hidden="true"><li>Godot 4.6</li><li>GDScript</li><li>Python</li><li>Procedural audio</li></ul>
+              </a>
+              <div className="project-details"><div className="project-number">04 / Personal project</div><h3>Zombie Survival</h3><p>A top-down 2.5D zombie shooter across six procedurally dressed city districts, with a full day/night cycle, dynamic weather, and a boss guarding every district.</p><ul className="project-stack" aria-label="Project technology"><li>Godot + GDScript</li><li>Python</li><li>Procedural audio</li></ul></div>
+            </article>
           </div>
           <a className="github-link reveal" href="https://github.com/manuellemendez" target="_blank" rel="noreferrer"><span>More experiments and code on GitHub</span><span aria-hidden="true">View profile ↗</span></a>
         </section>

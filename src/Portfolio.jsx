@@ -269,7 +269,7 @@ export default function Portfolio() {
                 <span className="hero-title-accent">doing real work.</span>
               </h1>
               <p className="hero-intro reveal">
-                I build React interfaces for operational teams. My background in banking taught me to ask better questions before I start writing code.
+                I build React interfaces for operational teams. Five years at one product company taught me to ask better questions before I start writing code.
               </p>
               <div className="hero-actions reveal">
                 <a className="button button-primary" href="#work" data-companion-message="Good call. The work tells the story.">See selected work <span aria-hidden="true">↓</span></a>
@@ -307,7 +307,7 @@ export default function Portfolio() {
           <div className="about-content">
             <h2 id="about-title" className="statement reveal">Code is only useful when it solves the <em>right</em> problem.</h2>
             <div className="about-grid">
-              <p className="about-lead reveal">My path runs through both banking and software. That means I can understand the technical system, listen for the human problem, and communicate clearly between the two.</p>
+              <p className="about-lead reveal">I build software for teams doing hands-on, practical work. That means I can understand the technical system, listen for the human problem, and communicate clearly between the two.</p>
               <div className="principles">
                 <article className="principle reveal"><span className="principle-number">A</span><div><h3>Understand the job first</h3><p>I learn who is using the product, what slows them down, and what a useful outcome looks like.</p></div></article>
                 <article className="principle reveal"><span className="principle-number">B</span><div><h3>Make decisions legible</h3><p>Good interfaces and good team communication have the same job: remove avoidable confusion.</p></div></article>
@@ -320,10 +320,9 @@ export default function Portfolio() {
         <section className="experience section" id="experience" aria-labelledby="experience-title">
           <div className="section-label reveal"><span>02</span><p>Experience</p></div>
           <div className="experience-content">
-            <div className="experience-heading reveal"><p className="eyebrow">A career built around people + systems</p><h2 id="experience-title">From client conversations to production software.</h2></div>
+            <div className="experience-heading reveal"><p className="eyebrow">Built around people + systems</p><h2 id="experience-title">From first React project to production software.</h2></div>
             <div className="timeline">
               <article className="timeline-item reveal"><div className="timeline-meta"><span>Most recent</span><span>Calgary, AB</span></div><div className="timeline-main"><h3>Front-end Engineer</h3><p className="timeline-company">Vizzn Inc</p><p>Build and evolve production React and TypeScript interfaces for construction operations, from routing and design-system migrations to fast, localized workflows for equipment, dispatch, reporting, and real-time communication.</p><ul className="tag-list" aria-label="Relevant strengths"><li>React + TypeScript</li><li>shadcn/ui + Ant Design</li><li>i18n + accessible UI</li></ul></div></article>
-              <article className="timeline-item reveal"><div className="timeline-meta"><span>Earlier chapter</span><span>Calgary, AB</span></div><div className="timeline-main"><h3>Personal Banking Associate</h3><p className="timeline-company">TD Canada Trust</p><p>Helped clients navigate financial decisions, translated complex information into clear next steps, and built trust in conversations where accuracy mattered.</p><ul className="tag-list" aria-label="Relevant strengths"><li>Client empathy</li><li>Problem solving</li><li>Clear communication</li></ul></div></article>
               <article className="timeline-item reveal"><div className="timeline-meta"><span>2020—2021</span><span>EvolveU</span></div><div className="timeline-main"><h3>Full-stack development</h3><p className="timeline-company">Immersive program</p><p>Built responsive, project-based applications across the stack, learning through agile collaboration, testing, and frequent delivery.</p><ul className="tag-list" aria-label="Technology foundations"><li>React</li><li>Node + Express</li><li>API integration</li></ul></div></article>
             </div>
           </div>

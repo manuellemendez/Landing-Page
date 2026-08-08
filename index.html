@@ -7,7 +7,12 @@
       name="description"
       content="Manuel Mendez is a Calgary-based front-end engineer who builds clear, useful software for real people and real operations."
     />
+    <meta name="author" content="Manuel Mendez" />
     <meta name="theme-color" content="#000000" />
+    <link rel="canonical" href="https://portfoliopagemanuel.netlify.app/" />
+
+    <meta property="og:site_name" content="Manuel Mendez" />
+    <meta property="og:locale" content="en_CA" />
     <meta property="og:title" content="Manuel Mendez — Front-end Engineer" />
     <meta
       property="og:description"
@@ -15,14 +20,77 @@
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://portfoliopagemanuel.netlify.app/" />
+    <!-- Absolute URL is required: scrapers do not resolve relative image paths. -->
+    <meta property="og:image" content="https://portfoliopagemanuel.netlify.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Manuel Mendez, front-end engineer in Calgary — Software for people doing real work."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Manuel Mendez — Front-end Engineer" />
+    <meta
+      name="twitter:description"
+      content="Product-minded web development, grounded in customer empathy and real-world delivery."
+    />
+    <meta name="twitter:image" content="https://portfoliopagemanuel.netlify.app/og.png" />
+
     <title>Manuel Mendez — Front-end Engineer</title>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600&family=Unbounded:wght@500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Static, not React-rendered, so crawlers that skip JS still read it. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Manuel Mendez",
+        "jobTitle": "Front-end Engineer",
+        "description": "Calgary-based front-end engineer who builds clear, useful software for real people and real operations.",
+        "url": "https://portfoliopagemanuel.netlify.app/",
+        "image": "https://portfoliopagemanuel.netlify.app/og.png",
+        "email": "mailto:manuellemendez@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Calgary",
+          "addressRegion": "AB",
+          "addressCountry": "CA"
+        },
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Vizzn Inc"
+        },
+        "alumniOf": {
+          "@type": "EducationalOrganization",
+          "name": "EvolveU"
+        },
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "HTML",
+          "CSS",
+          "shadcn/ui",
+          "Ant Design",
+          "React Router",
+          "Internationalization",
+          "Web accessibility",
+          "OpenTelemetry"
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/in/manuel-mendez-379025190/",
+          "https://github.com/manuellemendez"
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

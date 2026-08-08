@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Apple touch icon template — 180×180</title>
+    <!--
+      Source for /public/apple-touch-icon.png. Same monogram as public/favicon.svg,
+      scaled to 180x180 with no rounded corners (iOS applies its own mask).
+
+        pnpm dev
+        open http://localhost:5173/scripts/icon-template.html
+        screenshot the viewport at exactly 180x180 -> public/apple-touch-icon.png
+    -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        background: #37a6a1;
+      }
+      svg {
+        display: block;
+        width: 180px;
+        height: 180px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      viewBox is cropped to 48x48 centred on (32,32): the M path from favicon.svg
+      spans x 14-50 / y 18-46, so the full 0 0 64 64 box leaves it top-left once
+      the notched square behind it is dropped.
+    -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="8 8 48 48">
+      <path fill="#37a6a1" d="M8 8h48v48H8z" />
+      <path fill="#101b1c" d="M14 18h8l10 13 10-13h8v28h-8V30L32 42 22 30v16h-8z" />
+    </svg>
+  </body>
+</html>

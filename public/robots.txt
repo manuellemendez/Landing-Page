@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfoliopagemanuel.netlify.app/sitemap.xml

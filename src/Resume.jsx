@@ -1,3 +1,37 @@
+import { useCallback, useEffect, useRef, useState } from "react";
+
+function CopyButton({ value, label }) {
+  const [copied, setCopied] = useState(false);
+  const timer = useRef(null);
+
+  useEffect(() => () => clearTimeout(timer.current), []);
+
+  const copy = useCallback(async () => {
+    if (!navigator.clipboard?.writeText) return;
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      return;
+    }
+    setCopied(true);
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => setCopied(false), 2000);
+  }, [value]);
+
+  return (
+    <button
+      className="copy-button"
+      type="button"
+      onClick={copy}
+      aria-label={`Copy ${label}`}
+      data-copied={copied || undefined}
+    >
+      <span aria-hidden="true">{copied ? "Copied" : "Copy"}</span>
+      <span className="visually-hidden" role="status">{copied ? `${label} copied` : ""}</span>
+    </button>
+  );
+}
+
 export default function Resume() {
   return (
     <>
@@ -35,8 +69,8 @@ export default function Resume() {
             <section className="sidebar-section" aria-labelledby="contact-title">
               <h2 id="contact-title" className="section-title">Contact</h2>
               <ul className="link-list">
-                <li><span>Email</span><a href="mailto:manuellemendez@gmail.com">manuellemendez@gmail.com</a></li>
-                <li><span>Phone</span><a href="tel:+15878899306">587 889 9306</a></li>
+                <li><span>Email</span><a href="mailto:manuellemendez@gmail.com">manuellemendez@gmail.com</a><CopyButton value="manuellemendez@gmail.com" label="email address" /></li>
+                <li><span>Phone</span><a href="tel:+15878899306">587 889 9306</a><CopyButton value="587 889 9306" label="phone number" /></li>
                 <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/manuel-mendez-379025190/" target="_blank" rel="noreferrer">manuel-mendez ↗</a></li>
                 <li><span>GitHub</span><a href="https://github.com/manuellemendez" target="_blank" rel="noreferrer">manuellemendez ↗</a></li>
               </ul>
